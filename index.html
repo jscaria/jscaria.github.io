@@ -1,0 +1,69 @@
+<html>
+    <head>
+        <title>Test page for LiveConnectSDK.</title>
+		<script type="text/javascript" src="https://df-js.live.net/v5.0/OneDrive.js" id="onedrive-js" client-id="0000000048134837"></script>
+		
+		<script type="text/javascript">
+
+		
+		window.onload = function(){
+			WL.init({ client_id: "0000000048134837", env: "DF" });
+			
+			var pickerOptions = {
+				/*      
+				 * Required. Called when the user finishes picking files and passes
+				 * an array of file objects to the provided function. Details about the file
+				 * object and handling the response below.     
+				 */
+				success: function(files) {
+					// Handle returned file object(s)
+					alert("You picked " + file[0].filename);
+				},
+
+				/*
+				 * Optional. Called if a user cancels the picker.
+				 */
+				cancel: function() {
+					alert("User canceled");
+				},
+
+				/*      
+				 * Optional. The default is the WebViewLink which returns a URL to view the file 
+				 * hosted on OneDrive. DownloadLink can be used to get a URL to the file content 
+				 * directly that expires in 1 hour.
+				 */
+				linkType: "WebViewLink", // or "DownloadLink",
+
+				/*      
+				 * Optional. The default value is false which allows the user to
+				 * select a single file, while using true enables the user to select multiple
+				 * files.      
+				 */
+				multiselect: false // or true
+			}
+				
+			var pickerButton = OneDrive.createOpenButton(pickerOptions);
+			document.body.appendChild(pickerButton); 
+		}
+	</script>
+	</head>
+	<body>
+    <header>
+        <h1>OneDrive picker and saver example</h1>
+    </header>
+	
+	<div>
+	<h2>OneDrive picker</h2>
+	<p id="picker"></p>
+
+
+
+	</div>
+	
+	<div>
+	<h2>OneDrive saver</h2>
+	
+	</div>
+
+	</body>
+</html>
