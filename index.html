@@ -4,8 +4,6 @@
 		<script type="text/javascript" src="https://df-js.live.net/v5.0/OneDrive.js" id="onedrive-js" client-id="0000000048134837"></script>
 		
 		<script type="text/javascript">
-
-		
 		window.onload = function(){
 			WL.init({ client_id: "0000000048134837", env: "DF" });
 			
@@ -45,6 +43,9 @@
 			var pickerButton = OneDrive.createOpenButton(pickerOptions);
 			document.getElementById("picker").appendChild(pickerButton); 
 			
+			function launchOneDrivePicker() {
+				OneDrive.open(pickerOptions);
+			}
 			
 			saverOptions = {
 
@@ -89,6 +90,9 @@
 			var saverButton = OneDrive.createSaveButton(saverOptions);
 			document.getElementById("saver").appendChild(saverButton); 
 			
+			function launchOneDriveSaver() {
+				OneDrive.save(saverOptions);
+			}
 		}
 	</script>
 	</head>
@@ -97,20 +101,33 @@
         <h1>OneDrive picker and saver example</h1>
     </header>
 	
+	<h2>Using the OneDrive buttons</h2>
 	<div>
-	<h2>OneDrive picker</h2>
-	<p id="picker"></p>
+	<h3>OneDrive picker</h3>
+	<div id="picker"></div>
 
 
 
 	</div>
 	
 	<div>
-	<h2>OneDrive saver</h2>
+	<h3>OneDrive saver</h3>
 	<input id="inputFile" name="file" type="file" /><br />
-	<p id="saver"></p>
-	
+	<div id="saver"></div>
 	</div>
 
+	<h2>Using the my buttons - triggering programatically</h2>
+	<div>
+	<h3>OneDrive picker</h3>
+	<a href="#" onClick="javascript:launchOneDrivePicker();">Pick a file</a>
+	</div>	
+	
+	<div>
+	<h3>OneDrive saver</h3>
+	<input id="inputFile" name="file" type="file" /><br />
+	<a href="#" onClick="javascript:launchOneDriveSaver();">Save to OneDrive</a>
+	</div>	
+	
+	
 	</body>
 </html>
