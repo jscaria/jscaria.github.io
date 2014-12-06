@@ -46,7 +46,7 @@
 			document.getElementById("picker").appendChild(pickerButton); 
 			
 			
-			options = {
+			saverOptions = {
 
 			    	/*
 				 * Required. The id of a form input element of type file.
@@ -86,7 +86,7 @@
 				}
 			}
 			
-			var saverButton = OneDrive.createSaveButton(pickerOptions);
+			var saverButton = OneDrive.createSaveButton(saverOptions);
 			document.getElementById("saver").appendChild(saverButton); 
 			
 		}
@@ -107,6 +107,7 @@
 	
 	<div>
 	<h2>OneDrive saver</h2>
+	<input id="file" name="file" type="file" /><br />
 	<p id="saver"></p>
 	
 	</div>
