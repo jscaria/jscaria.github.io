@@ -1,99 +1,101 @@
 <html>
     <head>
-        <title>Test page for LiveConnectSDK.</title>
+        <title>OneDrive JavaScript Picker and Saver SDK sample</title>
 		<script type="text/javascript" src="https://df-js.live.net/v5.0/OneDrive.js" id="onedrive-js" client-id="0000000048134837"></script>
-		
 		<script type="text/javascript">
-		window.onload = function(){
+		
+		var pickerOptions = {
+			/*      
+			 * Required. Called when the user finishes picking files and passes
+			 * an array of file objects to the provided function. Details about the file
+			 * object and handling the response below.     
+			 */
+			success: function(files) {
+				// Handle returned file object(s)
+				alert("You picked " + files[0].filename);
+			},
+
+			/*
+			 * Optional. Called if a user cancels the picker.
+			 */
+			cancel: function() {
+				alert("User canceled");
+			},
+
+			/*      
+			 * Optional. The default is the WebViewLink which returns a URL to view the file 
+			 * hosted on OneDrive. DownloadLink can be used to get a URL to the file content 
+			 * directly that expires in 1 hour.
+			 */
+			linkType: "WebViewLink", // or "DownloadLink",
+
+			/*      
+			 * Optional. The default value is false which allows the user to
+			 * select a single file, while using true enables the user to select multiple
+			 * files.      
+			 */
+			multiselect: false // or true
+		}
+			
+		saverOptions = {
+
+		    	/*
+			 * Required. The id of a form input element of type file.
+			 */
+			file: "inputFile",
+		
+			/* 
+			 * Optional. If not provided, the filename will be inferred 
+			 * from the name attribute of the input element.
+			 */
+			filename: 'file.txt',
+			
+			/* Optional. Called when the file has completed uploading to server. */
+			success: function(){
+				alert("File uploaded!");
+			},
+				
+			/*
+			 * Optional. Called at various points with a float between 0.0 and 100.0 
+			 * to indicate the progress of the upload. This is will be called at least 
+			 * once with 100.0
+			 */
+			progress: function(p) {
+				alert("Uploaded " + p + "%.")
+			},
+				
+			/* Optional. Called when the user cancels the saver. */
+			cancel: function(){
+				alert("User canceled.");
+			},
+			
+			/*
+			 * Optional. Called when an error occured on our server. Also called if the
+			 * user is out of quota, or doesn't have permission to upload to the chosen location. 
+			 */
+			error: function(e) {
+				alert("There was an error saving your file.");
+			}
+		}			
+			
+		window.onload = function() {
+			/* Only need for dogfood */
 			WL.init({ client_id: "0000000048134837", env: "DF" });
 			
-			var pickerOptions = {
-				/*      
-				 * Required. Called when the user finishes picking files and passes
-				 * an array of file objects to the provided function. Details about the file
-				 * object and handling the response below.     
-				 */
-				success: function(files) {
-					// Handle returned file object(s)
-					alert("You picked " + file[0].filename);
-				},
-
-				/*
-				 * Optional. Called if a user cancels the picker.
-				 */
-				cancel: function() {
-					alert("User canceled");
-				},
-
-				/*      
-				 * Optional. The default is the WebViewLink which returns a URL to view the file 
-				 * hosted on OneDrive. DownloadLink can be used to get a URL to the file content 
-				 * directly that expires in 1 hour.
-				 */
-				linkType: "WebViewLink", // or "DownloadLink",
-
-				/*      
-				 * Optional. The default value is false which allows the user to
-				 * select a single file, while using true enables the user to select multiple
-				 * files.      
-				 */
-				multiselect: false // or true
-			}
-				
 			var pickerButton = OneDrive.createOpenButton(pickerOptions);
 			document.getElementById("picker").appendChild(pickerButton); 
 			
-			function launchOneDrivePicker() {
-				OneDrive.open(pickerOptions);
-			}
-			
-			saverOptions = {
-
-			    	/*
-				 * Required. The id of a form input element of type file.
-				 */
-				file: "inputFile",
-			
-				/* 
-				 * Optional. If not provided, the filename will be inferred 
-				 * from the name attribute of the input element.
-				 */
-				filename: 'file.txt',
-			
-				/* Optional. Called when the file has completed uploading to server. */
-				success: function(){
-				},
-				
-				/*
-				 * Optional. Called at various points with a float between 0.0 and 100.0 
-				 * to indicate the progress of the upload. This is will be called at least 
-				 * once with 100.0
-				 */
-				progress: function(p) {
-					alert("Uploaded " + p + "%.")
-				},
-				
-				/* Optional. Called when the user cancels the saver. */
-				cancel: function(){
-					alert("User canceled.");
-				},
-			
-				/*
-				 * Optional. Called when an error occured on our server. Also called if the
-				 * user is out of quota, or doesn't have permission to upload to the chosen location. 
-				 */
-				error: function(e) {
-					alert("There was an error saving your file.");
-				}
-			}
-			
 			var saverButton = OneDrive.createSaveButton(saverOptions);
 			document.getElementById("saver").appendChild(saverButton); 
-			
-			function launchOneDriveSaver() {
-				OneDrive.save(saverOptions);
-			}
 		}
+		
+		function launchOneDrivePicker() {
+			OneDrive.open(pickerOptions);
+		}
+		
+		function launchOneDriveSaver() {
+			OneDrive.save(saverOptions);
+		}		
 	</script>
 	</head>
 	<body>
@@ -105,9 +107,6 @@
 	<div>
 	<h3>OneDrive picker</h3>
 	<div id="picker"></div>
-
-
-
 	</div>
 	
 	<div>
