@@ -43,7 +43,52 @@
 			}
 				
 			var pickerButton = OneDrive.createOpenButton(pickerOptions);
-			document.body.appendChild(pickerButton); 
+			document.getElementById("picker").appendChild(pickerButton); 
+			
+			
+			options = {
+
+			    	/*
+				 * Required. The id of a form input element of type file.
+				 */
+				file: "inputFile",
+			
+				/* 
+				 * Optional. If not provided, the filename will be inferred 
+				 * from the name attribute of the input element.
+				 */
+				filename: 'file.txt',
+			
+				/* Optional. Called when the file has completed uploading to server. */
+				success: function(){
+				},
+				
+				/*
+				 * Optional. Called at various points with a float between 0.0 and 100.0 
+				 * to indicate the progress of the upload. This is will be called at least 
+				 * once with 100.0
+				 */
+				progress: function(p) {
+					alert("Uploaded " + p + "%.")
+				},
+				
+				/* Optional. Called when the user cancels the saver. */
+				cancel: function(){
+					alert("User canceled.");
+				},
+			
+				/*
+				 * Optional. Called when an error occured on our server. Also called if the
+				 * user is out of quota, or doesn't have permission to upload to the chosen location. 
+				 */
+				error: function(e) {
+					alert("There was an error saving your file.");
+				}
+			}
+			
+			var saverButton = OneDrive.createOpenButton(pickerOptions);
+			document.getElementById("saver").appendChild(saverButton); 
+			
 		}
 	</script>
 	</head>
@@ -62,6 +107,7 @@
 	
 	<div>
 	<h2>OneDrive saver</h2>
+	<p id="saver"></p>
 	
 	</div>
 
