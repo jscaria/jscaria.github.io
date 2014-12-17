@@ -99,10 +99,8 @@
 		}			
 			
 		window.onload = function() {
-			/* Only need for non-production environments */
-			<!---WL.init({ client_id: "0000000048134837", env: "DF" });-->
+			/* Only include this if want the SDK to call a specific non-production environment */
 			<!---WL.init({ client_id: "00000000680C1B45", env: "INT" });-->
-			
 			
 			var pickerButton = OneDrive.createOpenButton(pickerOptions);
 			document.getElementById("picker").appendChild(pickerButton); 
