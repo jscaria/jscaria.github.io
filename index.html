@@ -17,15 +17,19 @@
 				// Handle returned file object(s)
 				for(i=0; i<files.length; i++)
 				{
-					log("File #" + i+1);
+					var count = i+1;
+					log("File #" + count);
 					log("fileName: " + files[i].fileName);
 					log("size: " + files[i].size + " bytes");
 					log("linkType: " + files[i].linkType);
-					log("thumbnail count " + files[i].thumbnails.length);
+					log("thumbnail count: " + files[i].thumbnails.length);
 					
-					for(var thumbnail in files[i].thumbnails)
+					if(files[i].thumbnails.length > 0)
 					{
-						log(thumbnail);
+						for(var thumbnail in files[i].thumbnails)
+						{
+							log(thumbnail);
+						}
 					}
 					
 					log(); // new line
