@@ -30,7 +30,7 @@
 						log(files[i].thumbnails[j]);
 					}
 					
-					log(); // new line
+					log(""); // new line
 				}
 			},
 
@@ -38,7 +38,7 @@
 			 * Optional. Called if a user cancels the picker.
 			 */
 			cancel: function() {
-				alert("User canceled");
+				log("User canceled");
 			},
 
 			/*      
@@ -71,7 +71,7 @@
 			
 			/* Optional. Called when the file has completed uploading to server. */
 			success: function(){
-				alert("File uploaded!");
+				log("File uploaded!");
 			},
 				
 			/*
@@ -80,12 +80,12 @@
 			 * once with 100.0
 			 */
 			progress: function(p) {
-				alert("Uploaded " + p + "%.")
+				log("Uploaded " + p + "%.")
 			},
 				
 			/* Optional. Called when the user cancels the saver. */
 			cancel: function(){
-				alert("User canceled.");
+				log("User canceled.");
 			},
 			
 			/*
@@ -93,7 +93,8 @@
 			 * user is out of quota, or doesn't have permission to upload to the chosen location. 
 			 */
 			error: function(e) {
-				alert("There was an error saving your file.");
+				log("There was an error saving your file.");
+				log(e);
 			}
 		}			
 			
@@ -144,7 +145,7 @@
 	
 	<div><br />
 	<h4>Console</h4>
-		<textarea id="console" style="margin: 0px; width: 536px; height: 122px;"></textarea>
+		<textarea id="console" style="margin: 0px; width: 1835px; height: 219px;"></textarea>
 	</div>
 	</body>
 </html>
