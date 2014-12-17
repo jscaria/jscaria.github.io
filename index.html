@@ -15,7 +15,7 @@
 			 */
 			success: function(files) {
 				// Handle returned file object(s)
-				for(i=0; i<files.length; i++)
+				for(var i=0; i<files.length; i++)
 				{
 					var count = i+1;
 					log("File #" + count);
@@ -25,12 +25,9 @@
 					log("linkType: " + files[i].linkType);
 					log("thumbnail count: " + files[i].thumbnails.length);
 					
-					if(files[i].thumbnails.length > 0)
+					for(var j=0; j<files[i].thumbnails.length; j++)
 					{
-						for(var thumbnail in files[i].thumbnails)
-						{
-							log(thumbnail);
-						}
+						log(files[i].thumbnails[j]);
 					}
 					
 					log(); // new line
