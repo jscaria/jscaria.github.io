@@ -15,15 +15,13 @@
 			 */
 			success: function(files) {
 				// Handle returned file object(s)
-				alert("You picked " + files.filename);
+				alert("You picked " + files[0].fileName 
+					+ ".  You can access it at " 
+					+ files[0].link 
+					+ " (
+					+ files[0].size 
+					+ " bytes).");
 				
-				for (i = 0; i < files.length; i++) 
-				{
-					for(var propertyName in files[i])
-					{
-					    	alert(propertyName + ": " + files[i][propertyName]);
-					}
-				}
 			},
 
 			/*
