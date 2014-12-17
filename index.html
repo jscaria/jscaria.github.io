@@ -42,18 +42,18 @@
 			},
 
 			/*      
-			 * Optional. The default is the WebViewLink which returns a URL to view the file 
-			 * hosted on OneDrive. DownloadLink can be used to get a URL to the file content 
+			 * Optional. The default is the webViewLink which returns a URL to view the file 
+			 * hosted on OneDrive. downloadLink can be used to get a URL to the file content 
 			 * directly that expires in 1 hour.
 			 */
-			linkType: "webViewLink", // or "DownloadLink",
+			linkType: "downloadLink", // or "webViewLink",
 
 			/*      
 			 * Optional. The default value is false which allows the user to
 			 * select a single file, while using true enables the user to select multiple
 			 * files.      
 			 */
-			multiselect: false // or true
+			multiselect: true // or false
 		}
 			
 		saverOptions = {
