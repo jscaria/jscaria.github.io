@@ -44,7 +44,7 @@
 			 * hosted on OneDrive. downloadLink can be used to get a URL to the file content 
 			 * directly that expires in 1 hour.
 			 */
-			linkType: "webViewLink", // or "downloadLink",
+			linkType: document.GetElementById('linkType').value,
 
 			/*      
 			 * Optional. The default value is false which allows the user to
@@ -132,17 +132,17 @@
 	    <tr>
 	        <td>Options</td>
 	        <td>
-	                <input type="checkbox" name="multiSelect"/>
+	                <input id="multiSelect" type="checkbox" name="multiSelect"/>
 	                <label>Enable multiselect</label>
 	        </td>
 	    </tr>
 	    <tr>
 	        <td>Link type:</td>
 	        <td>
-	            <input type="radio" checked="checked" value="webViewLink" name="linkType" />
+	            <input id="linkType" type="radio" checked="checked" value="webViewLink" name="linkType" />
 	            <label>Web View Link</label>
-	            <input type="radio" value="downloadLink" name="linkType" />
-	            <label>Direct link</label>
+	            <input id="linkType" type="radio" value="downloadLink" name="linkType" />
+	            <label>Download link</label>
 	        </td>
 	    </tr>
 	    <tr>
@@ -171,8 +171,8 @@
 	    <tr>
 	        <td>File name:</td>
 	        <td>
-	            <input type="textbox" name="fileName" />
-	            <label>File name (default: file name in the URL)</label>
+	            <input id="fileName" type="textbox" name="fileName" />
+	            <label>Default: file name in the URL</label>
 	        </td>
 	    </tr>
 	    <tr>
