@@ -1,0 +1,147 @@
+<html>
+    <head>
+        <title>OneDrive JavaScript Picker and Saver SDK sample</title>
+		<script type="text/javascript" src="OneDrive.debug.js" id="onedrive-js" client-id="0000000048134837"></script>
+
+		<script type="text/javascript">
+		
+		var pickerOptions = {
+			/*      
+			 * Required. Called when the user finishes picking files and passes
+			 * an array of file objects to the provided function. Details about the file
+			 * object and handling the response below.     
+			 */
+			success: function(files) {
+				// Handle returned file object(s)
+				for(var i=0; i<files.length; i++)
+				{
+					var count = i+1;
+					log("File #" + count);
+					log("fileName: " + files[i].fileName);
+					log("link: " + files[i].link);
+					log("size: " + files[i].size + " bytes");
+					log("linkType: " + files[i].linkType);
+					log("thumbnail count: " + files[i].thumbnails.length);
+					
+					for(var j=0; j<files[i].thumbnails.length; j++)
+					{
+						log(files[i].thumbnails[j]);
+					}
+					
+					log(""); // new line
+				}
+			},
+
+			/*
+			 * Optional. Called if a user cancels the picker.
+			 */
+			cancel: function() {
+				log("User canceled");
+			},
+
+			/*      
+			 * Optional. The default is the webViewLink which returns a URL to view the file 
+			 * hosted on OneDrive. downloadLink can be used to get a URL to the file content 
+			 * directly that expires in 1 hour.
+			 */
+			linkType: "webViewLink", // or "downloadLink",
+
+			/*      
+			 * Optional. The default value is false which allows the user to
+			 * select a single file, while using true enables the user to select multiple
+			 * files.      
+			 */
+			multiSelect: true // or false
+		}
+			
+		saverOptions = {
+
+		    	/*
+			 * Required. The id of a form input element of type file.
+			 */
+			file: "inputFile",
+		
+			/* 
+			 * Optional. If not provided, the fileName will be inferred 
+			 * from the name attribute of the input element.
+			 */
+			/*fileName: 'file.txt',*/
+			
+			/* Optional. Called when the file has completed uploading to server. */
+			success: function(){
+				log("File uploaded!");
+			},
+				
+			/*
+			 * Optional. Called at various points with a float between 0.0 and 100.0 
+			 * to indicate the progress of the upload. This is will be called at least 
+			 * once with 100.0
+			 */
+			progress: function(p) {
+				log("Uploaded " + p + "%.")
+			},
+				
+			/* Optional. Called when the user cancels the saver. */
+			cancel: function(){
+				log("User canceled.");
+			},
+			
+			/*
+			 * Optional. Called when an error occured on our server. Also called if the
+			 * user is out of quota, or doesn't have permission to upload to the chosen location. 
+			 */
+			error: function(e) {
+				log("There was an error saving your file.");
+				log(e);
+			}
+		}			
+			
+		window.onload = function() {
+			/* Only include this if want the SDK to call a specific non-production environment */
+			<!---WL.init({ client_id: "00000000680C1B45", env: "INT" });-->
+			
+			var pickerButton = OneDrive.createOpenButton(pickerOptions);
+			document.getElementById("picker").appendChild(pickerButton); 
+			
+			var saverButton = OneDrive.createSaveButton(saverOptions);
+			document.getElementById("saver").appendChild(saverButton); 
+		}
+		
+		function launchOneDrivePicker() {
+			OneDrive.open(pickerOptions);
+		}
+		
+		function launchOneDriveSaver() {
+			OneDrive.save(saverOptions);
+		}
+		
+		function log(message) {
+			document.getElementById("console").value += message + "\n";
+		}
+	</script>
+	</head>
+	<body>
+    <header>
+        <h1>OneDrive picker and saver example</h1>
+    </header>
+	
+	<div>
+	<h3>OneDrive picker</h3>
+	<div id="picker"></div>
+	<div><a href="javascript:void(0);" onClick="javascript:launchOneDrivePicker();">Open from OneDrive</a></div>
+	
+	</div>
+	
+	<div>
+	<h3>OneDrive saver</h3>
+	<input id="inputFile" name="file" type="file" /><br />
+	<div id="saver"></div>
+	<div><a href="javascript:void(0);" onClick="javascript:launchOneDriveSaver();">Save to OneDrive</a></div>
+	</div>
+	
+	<div><br />
+	<h4>Console</h4>
+		<textarea id="console" style="margin: 0px; width: 1835px; height: 219px;"></textarea>
+	</div>
+	</body>
+</html>
