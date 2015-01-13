@@ -128,14 +128,12 @@
 	<div>
 	<h3>OneDrive picker</h3>
 	
-	<table id="chooser-demo-tbl">
+	<table>
 	    <tr>
 	        <td>Options</td>
 	        <td>
-	            <div>
 	                <input type="checkbox" name="multiSelect"/>
 	                <label>Enable multiselect</label>
-	            </div>
 	        </td>
 	    </tr>
 	    <tr>
@@ -148,7 +146,7 @@
 	        </td>
 	    </tr>
 	    <tr>
-	        <td>Picker button:</td>
+	        <td>Button:</td>
 	        <td>
 	        	<div id="picker"></div>
 			<div><a href="javascript:void(0);" onClick="javascript:launchOneDrivePicker();">Open from OneDrive</a></div>
@@ -163,9 +161,27 @@
 	
 	<div>
 	<h3>OneDrive saver</h3>
-	<input id="inputFile" name="file" type="file" /><br />
-	<div id="saver"></div>
-	<div><a href="javascript:void(0);" onClick="javascript:launchOneDriveSaver();">Save to OneDrive</a></div>
+	<table>
+	    <tr>
+	        <td>File:</td>
+	        <td>
+	                <input id="inputFile" name="file" type="file" />
+	        </td>
+	    </tr>
+	    <tr>
+	        <td>File name:</td>
+	        <td>
+	            <input type="textbox" name="fileName" />
+	            <label>File name (default: file name in the URL)</label>
+	        </td>
+	    </tr>
+	    <tr>
+	        <td>Button:</td>
+	        <td>
+			<div id="saver"></div>
+			<div><a href="javascript:void(0);" onClick="javascript:launchOneDriveSaver();">Save to OneDrive</a></div>	        </td>
+	    </tr>
+	</table>	
 	</div>
 	
 	<div><br />
