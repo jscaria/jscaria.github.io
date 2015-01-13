@@ -127,11 +127,37 @@
 	
 	<div>
 	<h3>OneDrive picker</h3>
-	<input type="checkbox" name="isMultiSelect" value="true"> Enable multi-select<br />
-	<input type="radio" name="linkType" value="webViewLink"> webViewLink<br />
-	<input type="radio" name="linkType" value="downloadLink"> downloadLink<br />
-	<div id="picker"></div>
-	<div><a href="javascript:void(0);" onClick="javascript:launchOneDrivePicker();">Open from OneDrive</a></div>
+	
+	<table id="chooser-demo-tbl">
+	    <tr>
+	        <td>Options</td>
+	        <td>
+	            <div>
+	                <input type="checkbox" name="multiSelect"/>
+	                <label>Enable multiselect</label>
+	            </div>
+	        </td>
+	    </tr>
+	    <tr>
+	        <td>Link type:</td>
+	        <td>
+	            <input type="radio" checked="checked" value="webViewLink" name="linkType" />
+	            <label>Web View Link</label>
+	            <input type="radio" value="downloadLink" name="linkType" />
+	            <label>Direct link</label>
+	        </td>
+	    </tr>
+	    <tr>
+	        <td>Picker button:</td>
+	        <td>
+	        	<div id="picker"></div>
+			<div><a href="javascript:void(0);" onClick="javascript:launchOneDrivePicker();">Open from OneDrive</a></div>
+	        </td>
+	    </tr>
+	</table>
+	
+
+
 	
 	</div>
 	
