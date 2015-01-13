@@ -44,14 +44,14 @@
 			 * hosted on OneDrive. downloadLink can be used to get a URL to the file content 
 			 * directly that expires in 1 hour.
 			 */
-			linkType: document.GetElementById('linkType').value,
+			linkType: document.querySelector('input[name="linkType"]:checked').value, // webViewLink or downloadLink
 
 			/*      
 			 * Optional. The default value is false which allows the user to
 			 * select a single file, while using true enables the user to select multiple
 			 * files.      
 			 */
-			multiSelect: true // or false
+			multiSelect: document.getElementById("multiSelect").checked // true or false
 		}
 			
 		saverOptions = {
@@ -65,7 +65,7 @@
 			 * Optional. If not provided, the fileName will be inferred 
 			 * from the name attribute of the input element.
 			 */
-			/*fileName: 'file.txt',*/
+			fileName: document.getElementById("fileName").value == "" ? null : document.getElementById("fileName").value,
 			
 			/* Optional. Called when the file has completed uploading to server. */
 			success: function(){
