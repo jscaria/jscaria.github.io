@@ -70,7 +70,7 @@
 				 * Optional. If not provided, the fileName will be inferred 
 				 * from the name attribute of the input element.
 				 */
-				fileName: document.getElementById("fileName").value == "" ? null : document.getElementById("fileName").value,
+				fileName: null,
 				
 				/* Optional. Called when the file has completed uploading to server. */
 				success: function(){
@@ -145,6 +145,11 @@
 		function updatePickerLinkType() {
 			pickerOptions.linkType = document.querySelector('input[name="linkType"]:checked').value;
 		}
+
+		function updateSaverFileName() {
+			var fileName = document.getElementById("fileName").value;
+			saverOptions.fileName = fileName != "" ? document.getElementById("fileName").value : null;
+		}		
 	</script>
 	</head>
 	<body>
@@ -209,7 +214,7 @@
 	    <tr>
 	        <td>File name:</td>
 	        <td>
-	            <input id="fileName" type="textbox" name="fileName" />
+	            <input id="fileName" type="textbox" name="fileName" onKeyUp="javascript:updateSaverFileName();" />
 	            <label>Default: file name in the URL</label>
 	        </td>
 	    </tr>
