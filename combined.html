@@ -4,7 +4,6 @@
 		<script type="text/javascript" src="OneDrive.debug.js" id="onedrive-js" client-id="0000000048134837"></script>
 
 		<script type="text/javascript">
-		window.onload = function() {
 			var pickerOptions = {
 				/*      
 				 * Required. Called when the user finishes picking files and passes
@@ -44,14 +43,14 @@
 				 * hosted on OneDrive. downloadLink can be used to get a URL to the file content 
 				 * directly that expires in 1 hour.
 				 */
-				linkType: document.querySelector('input[name="linkType"]:checked').value, // webViewLink or downloadLink
+				linkType: "webViewLink", // or downloadLink
 	
 				/*      
 				 * Optional. The default value is false which allows the user to
 				 * select a single file, while using true enables the user to select multiple
 				 * files.      
 				 */
-				multiSelect: document.getElementById("multiSelect").checked, // true or false
+				multiSelect: false, // or true
 				
 				/*
 				* Optional. The color theme of the button created. 
@@ -108,7 +107,7 @@
 				theme: "blue" // or "white",				
 			}	
 		
-
+		window.onload = function() {
 			/* Only include this if want the SDK to call a specific non-production environment */
 			<!---WL.init({ client_id: "00000000680C1B45", env: "INT" });-->
 			
@@ -138,6 +137,14 @@
 		function log(message) {
 			document.getElementById("console").value += message + "\n";
 		}
+		
+		function updatePickerMultiSelect() {
+			pickerOptions.multiSelect = document.getElementById("multiSelect").checked;
+		}
+		
+		function updatePickerLinkType() {
+			pickerOptions.linkType = document.querySelector('input[name="linkType"]:checked').value;
+		}
 	</script>
 	</head>
 	<body>
@@ -152,16 +159,16 @@
 	    <tr>
 	        <td>Options</td>
 	        <td>
-	                <input id="multiSelect" type="checkbox" name="multiSelect"/>
+	                <input id="multiSelect" type="checkbox" name="multiSelect" onClick="javascript:updatePickerMultiSelect();" />
 	                <label>Enable multiselect</label>
 	        </td>
 	    </tr>
 	    <tr>
 	        <td>Link type:</td>
 	        <td>
-	            <input id="linkType" type="radio" value="webViewLink" name="linkType" checked="checked" />
+	            <input id="linkType" type="radio" value="webViewLink" name="linkType" checked="checked" onClick="javascript:updatePickerLinkType();" />
 	            <label>Web View Link</label>
-	            <input id="linkType" type="radio" value="downloadLink" name="linkType" />
+	            <input id="linkType" type="radio" value="downloadLink" name="linkType" onClick="javascript:updatePickerLinkType();" />
 	            <label>Download link</label>
 	        </td>
 	    </tr>
