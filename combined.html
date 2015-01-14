@@ -51,7 +51,13 @@
 				 * select a single file, while using true enables the user to select multiple
 				 * files.      
 				 */
-				multiSelect: document.getElementById("multiSelect").checked // true or false
+				multiSelect: document.getElementById("multiSelect").checked, // true or false
+				
+				/*
+				* Optional. The color theme of the button created. 
+				* Default: blue, otherwise white
+				*/
+				theme: "blue", // or "white",
 			}
 				
 			saverOptions = {
@@ -94,6 +100,12 @@
 					log("There was an error saving your file.");
 					log(e);
 				}
+				
+				/*
+				* Optional. The color theme of the button created. 
+				* Default: blue, otherwise white
+				*/
+				theme: "blue", // or "white",				
 			}	
 		
 
@@ -103,12 +115,14 @@
 			var bluePickerButton = OneDrive.createOpenButton(pickerOptions);
 			document.getElementById("bluePicker").appendChild(bluePickerButton); 
 
+			pickerOptions.theme = "white";
 			var whitePickerButton = OneDrive.createOpenButton(pickerOptions);
 			document.getElementById("whitePicker").appendChild(whitePickerButton); 
 			
 			var blueSaverButton = OneDrive.createSaveButton(saverOptions);
 			document.getElementById("blueSaver").appendChild(blueSaverButton); 
 
+			saverOptions.theme = "white";
 			var whiteSaverButton = OneDrive.createSaveButton(saverOptions);
 			document.getElementById("whiteSaver").appendChild(whiteSaverButton); 			
 		}		
