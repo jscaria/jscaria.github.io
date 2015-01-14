@@ -44,7 +44,7 @@
 			 * hosted on OneDrive. downloadLink can be used to get a URL to the file content 
 			 * directly that expires in 1 hour.
 			 */
-			linkType: document.querySelector('input[name="linkType"]:checked').value, // webViewLink or downloadLink
+			linkType: "webViewLink", //document.querySelector('input[name="linkType"]:checked').value, // webViewLink or downloadLink
 
 			/*      
 			 * Optional. The default value is false which allows the user to
@@ -94,7 +94,24 @@
 				log("There was an error saving your file.");
 				log(e);
 			}
-		}			
+		}	
+		
+		window.onload = function() {
+			/* Only include this if want the SDK to call a specific non-production environment */
+			<!---WL.init({ client_id: "00000000680C1B45", env: "INT" });-->
+			
+			var bluePickerButton = OneDrive.createOpenButton(pickerOptions);
+			document.getElementById("bluePicker").appendChild(bluePickerButton); 
+
+			var whitePickerButton = OneDrive.createOpenButton(pickerOptions);
+			document.getElementById("whitePicker").appendChild(whitePickerButton); 
+			
+			var blueSaverButton = OneDrive.createSaveButton(saverOptions);
+			document.getElementById("blueSaver").appendChild(blueSaverButton); 
+
+			var whiteSaverButton = OneDrive.createSaveButton(saverOptions);
+			document.getElementById("whiteSaver").appendChild(whiteSaverButton); 			
+		}		
 			
 		function launchOneDrivePicker() {
 			OneDrive.open(pickerOptions);
@@ -180,24 +197,4 @@
 		<textarea id="console" style="margin: 0px; width: 1835px; height: 219px;"></textarea>
 	</div>
 	</body>
-	
-<script type="text/javascript">
-			window.onload = function() {
-			/* Only include this if want the SDK to call a specific non-production environment */
-			<!---WL.init({ client_id: "00000000680C1B45", env: "INT" });-->
-			
-			var bluePickerButton = OneDrive.createOpenButton(pickerOptions);
-			document.getElementById("bluePicker").appendChild(bluePickerButton); 
-
-			var whitePickerButton = OneDrive.createOpenButton(pickerOptions);
-			document.getElementById("whitePicker").appendChild(whitePickerButton); 
-			
-			var blueSaverButton = OneDrive.createSaveButton(saverOptions);
-			document.getElementById("blueSaver").appendChild(blueSaverButton); 
-
-			var whiteSaverButton = OneDrive.createSaveButton(saverOptions);
-			document.getElementById("whiteSaver").appendChild(whiteSaverButton); 			
-		}
-	
-</script>	
 </html>
