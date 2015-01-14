@@ -100,11 +100,17 @@
 			/* Only include this if want the SDK to call a specific non-production environment */
 			<!---WL.init({ client_id: "00000000680C1B45", env: "INT" });-->
 			
-			var pickerButton = OneDrive.createOpenButton(pickerOptions);
-			document.getElementById("picker").appendChild(pickerButton); 
+			var bluePickerButton = OneDrive.createOpenButton(pickerOptions);
+			document.getElementById("bluePicker").appendChild(bluePickerButton); 
+
+			var whitePickerButton = OneDrive.createOpenButton(pickerOptions);
+			document.getElementById("whitePicker").appendChild(whitePickerButton); 
 			
-			var saverButton = OneDrive.createSaveButton(saverOptions);
-			document.getElementById("saver").appendChild(saverButton); 
+			var blueSaverButton = OneDrive.createSaveButton(saverOptions);
+			document.getElementById("blueSaver").appendChild(blueSaverButton); 
+
+			var whiteSaverButton = OneDrive.createSaveButton(saverOptions);
+			document.getElementById("whiteSaver").appendChild(whiteSaverButton); 			
 		}
 		
 		function launchOneDrivePicker() {
@@ -148,7 +154,8 @@
 	    <tr>
 	        <td>Button:</td>
 	        <td>
-	        	<div id="picker"></div>
+	        	<div id="bluePicker"></div>
+	        	<div id="whitePicker"></div>
 			<div><a href="javascript:void(0);" onClick="javascript:launchOneDrivePicker();">Open from OneDrive</a></div>
 	        </td>
 	    </tr>
@@ -178,7 +185,8 @@
 	    <tr>
 	        <td>Button:</td>
 	        <td>
-			<div id="saver"></div>
+			<div id="blueSaver"></div>	        
+			<div id="whiteSaver"></div>
 			<div><a href="javascript:void(0);" onClick="javascript:launchOneDriveSaver();">Save to OneDrive</a></div>	        </td>
 	    </tr>
 	</table>	
