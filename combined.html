@@ -45,73 +45,74 @@
 		}
 		
 
-		/*
-		 * Picker options
-		 */
-		var pickerOptions = {
-		    /*      
-		     * Required. Called when the user finishes picking files and passes
-		     * an array of file objects to the provided function. Details about the file
-		     * object and handling the response below.     
-		     */
-		    success: pickerSuccess,
-		
-		    /*
-		     * Optional. Called if a user cancels the picker.
-		     */
-		    cancel: cancel,
-		
-		    /*      
-		     * Optional. The default is the webViewLink which returns a URL to view the file 
-		     * hosted on OneDrive. downloadLink can be used to get a URL to the file content 
-		     * directly that expires in 1 hour.
-		     */
-		    linkType: document.querySelector('input[name="linkType"]:checked').value, // "webViewLink" or "downloadLink",
-		
-		    /*      
-		     * Optional. The default value is false which allows the user to
-		     * select a single file, while using true enables the user to select multiple
-		     * files.      
-		     */
-		    multiSelect: document.getElementById("multiSelect").checked // true or false
+		window.onload = {
+			/*
+			 * Picker options
+			 */
+			var pickerOptions = {
+			    /*      
+			     * Required. Called when the user finishes picking files and passes
+			     * an array of file objects to the provided function. Details about the file
+			     * object and handling the response below.     
+			     */
+			    success: pickerSuccess,
+			
+			    /*
+			     * Optional. Called if a user cancels the picker.
+			     */
+			    cancel: cancel,
+			
+			    /*      
+			     * Optional. The default is the webViewLink which returns a URL to view the file 
+			     * hosted on OneDrive. downloadLink can be used to get a URL to the file content 
+			     * directly that expires in 1 hour.
+			     */
+			    linkType: document.querySelector('input[name="linkType"]:checked').value, // "webViewLink" or "downloadLink",
+			
+			    /*      
+			     * Optional. The default value is false which allows the user to
+			     * select a single file, while using true enables the user to select multiple
+			     * files.      
+			     */
+			    multiSelect: document.getElementById("multiSelect").checked // true or false
+			}
+	
+			/*
+			 * Saver options
+			 */
+			saverOptions = {
+			
+			    /*
+			     * Required. The id of a form input element of type file.
+			     */
+			    file: "inputFile",
+			
+			    /* 
+			     * Optional. If not provided, the fileName will be inferred 
+			     * from the name attribute of the input element.
+			     */
+			    fileName: document.getElementById("fileName").value != "" ? document.getElementById("fileName").value : null,
+			
+			    /* Optional. Called when the file has completed uploading to server. */
+			    success: saverSuccess,
+			
+			    /*
+			     * Optional. Called at various points with a float between 0.0 and 100.0 
+			     * to indicate the progress of the upload. This is will be called at least 
+			     * once with 100.0
+			     */
+			    progress: progress,
+			
+			    /* Optional. Called when the user cancels the saver. */
+			    cancel: cancel,
+			
+			    /*
+			     * Optional. Called when an error occured on our server. Also called if the
+			     * user is out of quota, or doesn't have permission to upload to the chosen location. 
+			     */
+			    error: error
+			}
 		}
-
-		/*
-		 * Saver options
-		 */
-		saverOptions = {
-		
-		    /*
-		     * Required. The id of a form input element of type file.
-		     */
-		    file: "inputFile",
-		
-		    /* 
-		     * Optional. If not provided, the fileName will be inferred 
-		     * from the name attribute of the input element.
-		     */
-		    fileName: document.getElementById("fileName").value != "" ? document.getElementById("fileName").value : null,
-		
-		    /* Optional. Called when the file has completed uploading to server. */
-		    success: saverSuccess,
-		
-		    /*
-		     * Optional. Called at various points with a float between 0.0 and 100.0 
-		     * to indicate the progress of the upload. This is will be called at least 
-		     * once with 100.0
-		     */
-		    progress: progress,
-		
-		    /* Optional. Called when the user cancels the saver. */
-		    cancel: cancel,
-		
-		    /*
-		     * Optional. Called when an error occured on our server. Also called if the
-		     * user is out of quota, or doesn't have permission to upload to the chosen location. 
-		     */
-		    error: error
-		}
-		
 			
 		function launchOneDrivePicker() {
 			OneDrive.open(pickerOptions);
