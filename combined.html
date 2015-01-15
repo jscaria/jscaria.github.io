@@ -44,117 +44,73 @@
 			log(e);
 		}
 		
-		/*
-		 * Default Picker values
-		 */
-		var pickerOptions = {
-			/*      
-			 * Required. Called when the user finishes picking files and passes
-			 * an array of file objects to the provided function. Details about the file
-			 * object and handling the response below.     
-			 */
-			success: pickerSuccess,
-	
-			/*
-			 * Optional. Called if a user cancels the picker.
-			 */
-			cancel: cancel,
-	
-			/*      
-			 * Optional. The default is the webViewLink which returns a URL to view the file 
-			 * hosted on OneDrive. downloadLink can be used to get a URL to the file content 
-			 * directly that expires in 1 hour.
-			 */
-			//linkType: "webViewLink", // or downloadLink
-	
-			/*      
-			 * Optional. The default value is false which allows the user to
-			 * select a single file, while using true enables the user to select multiple
-			 * files.      
-			 */
-			//multiSelect: false, // or true
-				
-			/*
-			* Optional. The color theme of the button created. 
-			* Default: blue, otherwise white
-			*/
-			//theme: "blue" // or "white",
-		}
-				
-		/*
-		 * Default Saver values
-		 */
-		saverOptions = {
-	
-			/*
-			 * Required. The id of a form input element of type file.
-			 */
-			file: "inputFile",
-			
-			/* 
-			 * Optional. If not provided, the fileName will be inferred 
-			 * from the name attribute of the input element.
-			 */
-			//fileName: null,
-				
-			/* Optional. Called when the file has completed uploading to server. */
-			success: saverSuccess,
-				
-			/*
-			 * Optional. Called at various points with a float between 0.0 and 100.0 
-			 * to indicate the progress of the upload. This is will be called at least 
-			 * once with 100.0
-			 */
-			progress: progress,
-					
-			/* Optional. Called when the user cancels the saver. */
-			cancel: cancel,
-			
-			/*
-			 * Optional. Called when an error occured on our server. Also called if the
-			 * user is out of quota, or doesn't have permission to upload to the chosen location. 
-			 */
-			error: error,
-				
-			/*
-			* Optional. The color theme of the button created. 
-			* Default: blue, otherwise white
-			*/
-			//theme: "blue" // or "white",				
-		}
-		
-		var bluePickerOptions = JSON.parse(JSON.stringify(pickerOptions));
-		var whitePickerOptions = JSON.parse(JSON.stringify(pickerOptions));
-		var linkPickerOptions = JSON.parse(JSON.stringify(pickerOptions));
 
-		var blueSaverOptions = JSON.parse(JSON.stringify(saverOptions));
-		var whiteSaverOptions = JSON.parse(JSON.stringify(saverOptions));
-		var linkSaverOptions = JSON.parse(JSON.stringify(saverOptions));
+		/*
+		 * Picker options
+		 */
+		var bluePickerOptions = { 
+			success: pickerSuccess,
+			cancel: cancel,
+			theme: "blue"
+		};
 		
+		var whitePickerOptions = { 
+			success: pickerSuccess,
+			cancel: cancel,
+			theme: "white"
+		};
+		
+		var linkPickerOptions = { 
+			success: pickerSuccess,
+			cancel: cancel,
+		};
+
+		/*
+		 * Saver options
+		 */
+		var blueSaverOptions = {
+			file: "inputFile",
+			success: saverSuccess,
+			progress: progress,
+			cancel: cancel,
+			error: error,
+			theme: "blue"
+		}
+		
+		var whiteSaverOptions = {
+			file: "inputFile",
+			success: saverSuccess,
+			progress: progress,
+			cancel: cancel,
+			error: error,
+			theme: "white"
+		}
+		var linkSaverOptions = {
+			file: "inputFile",
+			success: saverSuccess,
+			progress: progress,
+			cancel: cancel,
+			error: error
+		}
+		
+		/*
+		 * On Load
+		 */		
 		window.onload = function() {
-			/* Only include this if want the SDK to call a specific non-production environment */
-			<!---WL.init({ client_id: "00000000680C1B45", env: "INT" });-->
-			
 			/*
-			 * 1. Set theme color
-			 * 2. Create button var
-			 * 3. Add it to element
+			 * 1. Create button var
+			 * 2. Add it to element
 			 */
 			
-		
-			bluePickerOptions.theme = "blue";
 			var bluePickerButton = OneDrive.createOpenButton(bluePickerOptions);
 			document.getElementById("bluePicker").appendChild(bluePickerButton); 
 
-			whitePickerOptions.theme = "white";
 			var whitePickerButton = OneDrive.createOpenButton(whitePickerOptions);
 			document.getElementById("whitePicker").appendChild(whitePickerButton); 
 			
-			blueSaverOptions.theme = "blue";
 			var blueSaverButton = OneDrive.createSaveButton(blueSaverOptions);
 			document.getElementById("blueSaver").appendChild(blueSaverButton); 
 			
-			whiteSaverOptions.theme = "white";
 			var whiteSaverButton = OneDrive.createSaveButton(whiteSaverOptions);
 			document.getElementById("whiteSaver").appendChild(whiteSaverButton); 			
 		}		
@@ -181,7 +137,6 @@
 			bluePickerOptions.linkType = document.querySelector('input[name="linkType"]:checked').value;
 			whitePickerOptions.linkType = document.querySelector('input[name="linkType"]:checked').value;
 			linkPickerOptions.linkType = document.querySelector('input[name="linkType"]:checked').value;
-			
 		}
 
 		function updateSaverFileName() {
@@ -191,10 +146,6 @@
 				blueSaverOptions.fileName = fileName;
 				whiteSaverOptions.fileName = fileName;
 				linkSaverOptions.fileName = fileName;				
-			}else{
-				blueSaverOptions.fileName = null;
-				whiteSaverOptions.fileName = null;
-				linkSaverOptions.fileName = null;
 			}
 		}		
 	</script>
