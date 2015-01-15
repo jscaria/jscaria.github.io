@@ -48,106 +48,82 @@
 		/*
 		 * Picker options
 		 */
-		var bluePickerOptions = { 
-			success: pickerSuccess,
-			cancel: cancel,
-			theme: "blue"
-		};
+		var pickerOptions = {
+		    /*      
+		     * Required. Called when the user finishes picking files and passes
+		     * an array of file objects to the provided function. Details about the file
+		     * object and handling the response below.     
+		     */
+		    success: pickerSuccess,
 		
-		var whitePickerOptions = { 
-			success: pickerSuccess,
-			cancel: cancel,
-			theme: "white"
-		};
+		    /*
+		     * Optional. Called if a user cancels the picker.
+		     */
+		    cancel: cancel,
 		
-		var linkPickerOptions = { 
-			success: pickerSuccess,
-			cancel: cancel,
-		};
+		    /*      
+		     * Optional. The default is the webViewLink which returns a URL to view the file 
+		     * hosted on OneDrive. downloadLink can be used to get a URL to the file content 
+		     * directly that expires in 1 hour.
+		     */
+		    linkType: document.querySelector('input[name="linkType"]:checked').value; // "webViewLink" or "downloadLink",
+		
+		    /*      
+		     * Optional. The default value is false which allows the user to
+		     * select a single file, while using true enables the user to select multiple
+		     * files.      
+		     */
+		    multiSelect: document.getElementById("multiSelect").checked; // true or false
+		}
 
 		/*
 		 * Saver options
 		 */
-		var blueSaverOptions = {
-			file: "inputFile",
-			success: saverSuccess,
-			progress: progress,
-			cancel: cancel,
-			error: error,
-			theme: "blue"
+		saverOptions = {
+		
+		    /*
+		     * Required. The id of a form input element of type file.
+		     */
+		    file: "inputFile",
+		
+		    /* 
+		     * Optional. If not provided, the fileName will be inferred 
+		     * from the name attribute of the input element.
+		     */
+		    fileName: document.getElementById("fileName").value != "" ? document.getElementById("fileName").value : null,
+		
+		    /* Optional. Called when the file has completed uploading to server. */
+		    success: saverSuccess,
+		
+		    /*
+		     * Optional. Called at various points with a float between 0.0 and 100.0 
+		     * to indicate the progress of the upload. This is will be called at least 
+		     * once with 100.0
+		     */
+		    progress: progress,
+		
+		    /* Optional. Called when the user cancels the saver. */
+		    cancel: cancel,
+		
+		    /*
+		     * Optional. Called when an error occured on our server. Also called if the
+		     * user is out of quota, or doesn't have permission to upload to the chosen location. 
+		     */
+		    error: error
 		}
 		
-		var whiteSaverOptions = {
-			file: "inputFile",
-			success: saverSuccess,
-			progress: progress,
-			cancel: cancel,
-			error: error,
-			theme: "white"
-		}
-		var linkSaverOptions = {
-			file: "inputFile",
-			success: saverSuccess,
-			progress: progress,
-			cancel: cancel,
-			error: error
-		}
-		
-		/*
-		 * On Load
-		 */		
-		window.onload = function() {
-			/*
-			 * 1. Create button var
-			 * 2. Add it to element
-			 */
-			
-			var bluePickerButton = OneDrive.createOpenButton(bluePickerOptions);
-			document.getElementById("bluePicker").appendChild(bluePickerButton); 
-
-			var whitePickerButton = OneDrive.createOpenButton(whitePickerOptions);
-			document.getElementById("whitePicker").appendChild(whitePickerButton); 
-			
-			var blueSaverButton = OneDrive.createSaveButton(blueSaverOptions);
-			document.getElementById("blueSaver").appendChild(blueSaverButton); 
-			
-			var whiteSaverButton = OneDrive.createSaveButton(whiteSaverOptions);
-			document.getElementById("whiteSaver").appendChild(whiteSaverButton); 			
-		}		
 			
 		function launchOneDrivePicker() {
-			OneDrive.open(linkPickerOptions);
+			OneDrive.open(pickerOptions);
 		}
 		
 		function launchOneDriveSaver() {
-			OneDrive.save(linkSaverOptions);
+			OneDrive.save(saverOptions);
 		}
 		
 		function log(message) {
 			document.getElementById("console").value += message + "\n";
 		}
-		
-		function updatePickerMultiSelect() {
-			bluePickerOptions.multiSelect = document.getElementById("multiSelect").checked;
-			whitePickerOptions.multiSelect = document.getElementById("multiSelect").checked;
-			linkPickerOptions.multiSelect = document.getElementById("multiSelect").checked;
-		}
-		
-		function updatePickerLinkType() {
-			bluePickerOptions.linkType = document.querySelector('input[name="linkType"]:checked').value;
-			whitePickerOptions.linkType = document.querySelector('input[name="linkType"]:checked').value;
-			linkPickerOptions.linkType = document.querySelector('input[name="linkType"]:checked').value;
-		}
-
-		function updateSaverFileName() {
-			var fileName = document.getElementById("fileName").value;
-			if(fileName != "")
-			{
-				blueSaverOptions.fileName = fileName;
-				whiteSaverOptions.fileName = fileName;
-				linkSaverOptions.fileName = fileName;				
-			}
-		}		
 	</script>
 	</head>
 	<body>
