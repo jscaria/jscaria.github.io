@@ -4,134 +4,167 @@
 		<script type="text/javascript" src="OneDrive.debug.js" id="onedrive-js" client-id="0000000048134837"></script>
 
 		<script type="text/javascript">
-			var pickerOptions = {
-				/*      
-				 * Required. Called when the user finishes picking files and passes
-				 * an array of file objects to the provided function. Details about the file
-				 * object and handling the response below.     
-				 */
-				success: function(files) {
-					// Handle returned file object(s)
-					for(var i=0; i<files.length; i++)
-					{
-						var count = i+1;
-						log("File #" + count);
-						log("fileName: " + files[i].fileName);
-						log("link: " + files[i].link);
-						log("size: " + files[i].size + " bytes");
-						log("linkType: " + files[i].linkType);
-						log("thumbnail count: " + files[i].thumbnails.length);
-						
-						for(var j=0; j<files[i].thumbnails.length; j++)
-						{
-							log(files[i].thumbnails[j]);
-						}
-						
-						log(""); // new line
-					}
-				},
-	
-				/*
-				 * Optional. Called if a user cancels the picker.
-				 */
-				cancel: function() {
-					log("User canceled");
-				},
-	
-				/*      
-				 * Optional. The default is the webViewLink which returns a URL to view the file 
-				 * hosted on OneDrive. downloadLink can be used to get a URL to the file content 
-				 * directly that expires in 1 hour.
-				 */
-				linkType: "webViewLink", // or downloadLink
-	
-				/*      
-				 * Optional. The default value is false which allows the user to
-				 * select a single file, while using true enables the user to select multiple
-				 * files.      
-				 */
-				multiSelect: false, // or true
+		
+		/*
+		 * Response Functions
+		 */
+		function pickerSuccess(files) {
+			// Handle returned file object(s)
+			for(var i=0; i<files.length; i++) {
+				var count = i+1;
+				log("File #" + count);
+				log("fileName: " + files[i].fileName);
+				log("link: " + files[i].link);
+				log("size: " + files[i].size + " bytes");
+				log("linkType: " + files[i].linkType);
+				log("thumbnail count: " + files[i].thumbnails.length);
 				
-				/*
-				* Optional. The color theme of the button created. 
-				* Default: blue, otherwise white
-				*/
-				theme: "blue" // or "white",
-			}
+				for(var j=0; j<files[i].thumbnails.length; j++) {
+					log(files[i].thumbnails[j]);
+				}
 				
-			saverOptions = {
-	
-			    	/*
-				 * Required. The id of a form input element of type file.
-				 */
-				file: "inputFile",
-			
-				/* 
-				 * Optional. If not provided, the fileName will be inferred 
-				 * from the name attribute of the input element.
-				 */
-				fileName: null,
-				
-				/* Optional. Called when the file has completed uploading to server. */
-				success: function(){
-					log("File uploaded!");
-				},
-					
-				/*
-				 * Optional. Called at various points with a float between 0.0 and 100.0 
-				 * to indicate the progress of the upload. This is will be called at least 
-				 * once with 100.0
-				 */
-				progress: function(p) {
-					log("Uploaded " + p + "%.")
-				},
-					
-				/* Optional. Called when the user cancels the saver. */
-				cancel: function(){
-					log("User canceled.");
-				},
-				
-				/*
-				 * Optional. Called when an error occured on our server. Also called if the
-				 * user is out of quota, or doesn't have permission to upload to the chosen location. 
-				 */
-				error: function(e) {
-					log("There was an error saving your file.");
-					log(e);
-				},
-				
-				/*
-				* Optional. The color theme of the button created. 
-				* Default: blue, otherwise white
-				*/
-				theme: "blue" // or "white",				
+				log(""); // new line
 			}	
+		}
+		
+		function cancel() {
+			log("User canceled");
+		}
+		
+		function progress(p) {
+			log("Uploaded " + p + "%.")
+		}
+
+		function saverSuccess() {
+			log("File uploaded!");
+		}
+		
+		function error(e) {
+			log("There was an error saving your file.");
+			log(e);
+		}
+		
+		/*
+		 * Default Picker values
+		 */
+		var pickerOptions = {
+			/*      
+			 * Required. Called when the user finishes picking files and passes
+			 * an array of file objects to the provided function. Details about the file
+			 * object and handling the response below.     
+			 */
+			success: pickerSuccess,
+	
+			/*
+			 * Optional. Called if a user cancels the picker.
+			 */
+			cancel: cancel,
+	
+			/*      
+			 * Optional. The default is the webViewLink which returns a URL to view the file 
+			 * hosted on OneDrive. downloadLink can be used to get a URL to the file content 
+			 * directly that expires in 1 hour.
+			 */
+			//linkType: "webViewLink", // or downloadLink
+	
+			/*      
+			 * Optional. The default value is false which allows the user to
+			 * select a single file, while using true enables the user to select multiple
+			 * files.      
+			 */
+			//multiSelect: false, // or true
+				
+			/*
+			* Optional. The color theme of the button created. 
+			* Default: blue, otherwise white
+			*/
+			//theme: "blue" // or "white",
+		}
+				
+		/*
+		 * Default Saver values
+		 */
+		saverOptions = {
+	
+			/*
+			 * Required. The id of a form input element of type file.
+			 */
+			file: "inputFile",
+			
+			/* 
+			 * Optional. If not provided, the fileName will be inferred 
+			 * from the name attribute of the input element.
+			 */
+			//fileName: null,
+				
+			/* Optional. Called when the file has completed uploading to server. */
+			success: saverSuccess,
+				
+			/*
+			 * Optional. Called at various points with a float between 0.0 and 100.0 
+			 * to indicate the progress of the upload. This is will be called at least 
+			 * once with 100.0
+			 */
+			progress: progress,
+					
+			/* Optional. Called when the user cancels the saver. */
+			cancel: cancel,
+			
+			/*
+			 * Optional. Called when an error occured on our server. Also called if the
+			 * user is out of quota, or doesn't have permission to upload to the chosen location. 
+			 */
+			error: error,
+				
+			/*
+			* Optional. The color theme of the button created. 
+			* Default: blue, otherwise white
+			*/
+			//theme: "blue" // or "white",				
+		}
+		
+		var bluePickerOptions = JSON.parse(JSON.stringify(pickerOptions));
+		var whitePickerOptions = JSON.parse(JSON.stringify(pickerOptions));
+		var linkPickerOptions = JSON.parse(JSON.stringify(pickerOptions));
+
+		var blueSaverOptions = JSON.parse(JSON.stringify(saverOptions));
+		var whiteSaverOptions = JSON.parse(JSON.stringify(saverOptions));
+		var linkSaverOptions = JSON.parse(JSON.stringify(saverOptions));
 		
 		window.onload = function() {
 			/* Only include this if want the SDK to call a specific non-production environment */
 			<!---WL.init({ client_id: "00000000680C1B45", env: "INT" });-->
 			
-			var bluePickerButton = OneDrive.createOpenButton(pickerOptions);
+			/*
+			 * 1. Set theme color
+			 * 2. Create button var
+			 * 3. Add it to element
+			 */
+			
+		
+			bluePickerOptions.theme = "blue";
+			var bluePickerButton = OneDrive.createOpenButton(bluePickerOptions);
 			document.getElementById("bluePicker").appendChild(bluePickerButton); 
 
-			pickerOptions.theme = "white";
-			var whitePickerButton = OneDrive.createOpenButton(pickerOptions);
+			whitePickerOptions.theme = "white";
+			var whitePickerButton = OneDrive.createOpenButton(whitePickerOptions);
 			document.getElementById("whitePicker").appendChild(whitePickerButton); 
 			
-			var blueSaverButton = OneDrive.createSaveButton(saverOptions);
+			blueSaverOptions.theme = "blue";
+			var blueSaverButton = OneDrive.createSaveButton(JSON.parse(JSON.stringify(saverOptions));
 			document.getElementById("blueSaver").appendChild(blueSaverButton); 
-
-			saverOptions.theme = "white";
-			var whiteSaverButton = OneDrive.createSaveButton(saverOptions);
+			
+			whiteSaverOptions.theme = "white";
+			var whiteSaverButton = OneDrive.createSaveButton(whiteSaverOptions);
 			document.getElementById("whiteSaver").appendChild(whiteSaverButton); 			
 		}		
 			
 		function launchOneDrivePicker() {
-			OneDrive.open(pickerOptions);
+			OneDrive.open(linkPickerOptions);
 		}
 		
 		function launchOneDriveSaver() {
-			OneDrive.save(saverOptions);
+			OneDrive.save(linkSaverOptions);
 		}
 		
 		function log(message) {
@@ -139,16 +172,30 @@
 		}
 		
 		function updatePickerMultiSelect() {
-			pickerOptions.multiSelect = document.getElementById("multiSelect").checked;
+			bluePickerOptions.multiSelect = document.getElementById("multiSelect").checked;
+			whitePickerOptions.multiSelect = document.getElementById("multiSelect").checked;
+			linkPickerOptions.multiSelect = document.getElementById("multiSelect").checked;
 		}
 		
 		function updatePickerLinkType() {
-			pickerOptions.linkType = document.querySelector('input[name="linkType"]:checked').value;
+			bluePickerOptions.linkType = document.querySelector('input[name="linkType"]:checked').value;
+			whitePickerOptions.linkType = document.querySelector('input[name="linkType"]:checked').value;
+			linkPickerOptions.linkType = document.querySelector('input[name="linkType"]:checked').value;
+			
 		}
 
 		function updateSaverFileName() {
 			var fileName = document.getElementById("fileName").value;
-			saverOptions.fileName = fileName != "" ? document.getElementById("fileName").value : null;
+			if(fileName != "")
+			{
+				blueSaverOptions.fileName = fileName;
+				whiteSaverOptions.fileName = fileName;
+				linkSaverOptions.fileName = fileName;				
+			}else{
+				blueSaverOptions.fileName = null;
+				whiteSaverOptions.fileName = null;
+				linkSaverOptions.fileName = null;
+			}
 		}		
 	</script>
 	</head>
