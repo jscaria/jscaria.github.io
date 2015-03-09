@@ -8,6 +8,7 @@ var pickerOptions = {
 	 * object and handling the response below.     
 	 */
 	success: function() {
+		clearPickerLog();
 		// Handle returned file object(s)
 		for(var i=0; i<files.length; i++) {
 			var count = i+1;
@@ -30,6 +31,7 @@ var pickerOptions = {
 	 * Optional. Called if a user cancels the picker.
 	 */
 	cancel: function() {
+		clearPickerLog();
 		pickerLog("User cancelled");
 	},
 	
@@ -80,6 +82,7 @@ saverOptions = {
 	
 	/* Optional. Called when the user cancels the saver. */
 	cancel: function() {
+		clearSaverLog();
 		saverLog("User cancelled");
 	},
 	
@@ -88,6 +91,7 @@ saverOptions = {
 	 * user is out of quota, or doesn't have permission to upload to the chosen location. 
 	 */
 	error: function error(e) {
+		clearSaverLog();
 		saverLog("There was an error saving your file.");
 	},
 	
@@ -100,7 +104,22 @@ function launchOneDrivePicker() {
 }
 
 function pickerLog(message) {
-	document.getElementById("pickerConsole").innerHTML += message + "<br />";
+    var child = document.createElement("pre");
+    child.innerText = message;
+                
+    var parent = document.getElementById('pickerConsole') || document.body;
+	parent.appendChild(child);
+	parent.appendChild(document.createElement("br"));
+}
+
+function clearPickerLog()
+{
+    var child = document.createElement("pre");
+    child.innerText = "";
+                
+    var parent = document.getElementById('pickerConsole') || document.body;
+	parent.appendChild(child);
+	parent.appendChild(document.createElement("br"));
 }
 
 function launchOneDriveSaver() {
@@ -109,5 +128,20 @@ function launchOneDriveSaver() {
 }
 	
 function saverLog(message) {
-	document.getElementById("saverConsole").innerHTML += message + "<br />";
+    var child = document.createElement("pre");
+    child.innerText = message;
+                
+    var parent = document.getElementById('saverConsole') || document.body;
+	parent.appendChild(child);
+	parent.appendChild(document.createElement("br"));
+}
+
+function clearSaverLog()
+{
+    var child = document.createElement("pre");
+    child.innerText = "";
+                
+    var parent = document.getElementById('saverConsole') || document.body;
+	parent.appendChild(child);
+	parent.appendChild(document.createElement("br"));
 }
