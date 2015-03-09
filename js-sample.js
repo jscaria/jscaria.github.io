@@ -100,7 +100,7 @@ function launchOneDrivePicker() {
 }
 
 function pickerLog(message) {
-	document.getElementById("pickerConsole").value += message + "\n";
+	document.getElementById("pickerConsole").innerHTML += message + "<br />";
 }
 
 function launchOneDriveSaver() {
@@ -109,5 +109,5 @@ function launchOneDriveSaver() {
 }
 	
 function saverLog(message) {
-	document.getElementById("saverConsole").value += message + "\n";
+	document.getElementById("saverConsole").innerHTML += message + "<br />";
 }
