@@ -1,0 +1,84 @@
+<script type="text/javascript" src="https://js.live.net/v5.0/OneDrive.js" id="onedrive-js" client-id="000000004C142703"></script>
+<script type="text/javascript" src="js-sample.js"></script>
+<style>
+font-family: 'Segoe UI', 'Segoe UI Web Regular', 'Helvetica Neue', 'BBAlpha Sans', 'S60 Sans', Arial, sans-serif; 
+font-size: 12px;
+</style>
+
+
+<!--- picker sample --->
+<div>
+<table>
+    <tr>
+        <td>Options</td>
+        <td>
+                <input id="multiSelect" type="checkbox" name="multiSelect" />
+                <label>Enable multiselect</label>
+        </td>
+    </tr>
+    <tr>
+        <td>Link type:</td>
+        <td>
+            <input id="linkType" type="radio" value="webViewLink" name="linkType" checked="checked" />
+            <label>Web View Link</label>
+            <input id="linkType" type="radio" value="downloadLink" name="linkType" />
+            <label>Download link</label>
+        </td>
+    </tr>
+    <tr>
+        <td>Button:</td>	    
+	<td>
+	<button onClick="javascript:launchOneDrivePicker();" title="Open from OneDrive" style="direction: ltr; border: 1px solid rgb(9, 74, 178); height: 20px; padding-left: 4px; padding-right: 4px; text-align: center; cursor: pointer; background-color: rgb(9, 74, 178);">
+	<img src="https://js.live.net/v5.0/images/SkyDrivePicker/SkyDriveIcon_white.png" style="vertical-align: middle; height: 16px;">
+	<span style="font-family: 'Segoe UI', 'Segoe UI Web Regular', 'Helvetica Neue', 'BBAlpha Sans', 'S60 Sans', Arial, sans-serif; font-size: 12px; font-weight: bold; color: rgb(255, 255, 255); text-align: center; vertical-align: middle; margin-left: 2px; margin-right: 0px;">Open from OneDrive</span></button>
+	</td>
+    </tr>
+	<tr>
+	<td>Result</td>
+	<td><div id="pickerConsole"></div></td>
+	</tr>
+</table>
+</div>
+
+
+<br /><br /><br /><br />
+
+
+<!--- saver sample --->
+
+	
+<div>
+<table>
+    <tr>
+        <td>File:</td>
+        <td>
+                <input id="inputFile" name="file" type="file" />
+        </td>
+    </tr>
+    <tr>
+        <td>File name:</td>
+        <td>
+            <input id="fileName" type="textbox" name="fileName" />
+            <label>Default: file name in the URL</label>
+        </td>
+    </tr>
+	
+    <tr>
+        <td>Button:</td>
+        <td>
+		<button onClick="javascript:launchOneDriveSaver();" title="Save to OneDrive" style="direction: ltr; border: 1px solid rgb(9, 74, 178); height: 20px; padding-left: 4px; padding-right: 4px; text-align: center; cursor: pointer; background-color: rgb(9, 74, 178);">
+		<img src="https://js.live.net/v5.0/images/SkyDrivePicker/SkyDriveIcon_white.png" style="vertical-align: middle; height: 16px;">
+		<span style="font-family: 'Segoe UI', 'Segoe UI Web Regular', 'Helvetica Neue', 'BBAlpha Sans', 'S60 Sans', Arial, sans-serif; font-size: 12px; font-weight: bold; color: rgb(255, 255, 255); text-align: center; vertical-align: middle; margin-left: 2px; margin-right: 0px;">Save to OneDrive</span></button>
+
+		
+	</td>
+    </tr>
+	<tr>
+	<td>Result</td>
+	<td><div id="saverConsole"></div></td>
+	</tr>	
+</table>	
+</div>
+
+<div id="console"></div>
+
