@@ -21,7 +21,7 @@ var pickerOptions = {
 			var count = i+1;
 			pickerLog("File #" + count + "<br />");
 			pickerLog("Filename: " + files.values[i].fileName + "<br />");
-			pickerLog("File Link: <a href='" + files.values[i].link "'>" + files.values[i].link + "</a><br />");
+			pickerLog("File Link: <a href='" + files.values[i].link + "'>" + files.values[i].link + "</a><br />");
 			pickerLog("Size: " + files.values[i].size + " bytes<br />");
 			pickerLog("Link Type: " + files.values[i].linkType + "<br />");
 			pickerLog("Thumbnail Count: " + files.values[i].thumbnails.length + "<br />");
