@@ -7,7 +7,7 @@ var pickerOptions = {
 	 * an array of file objects to the provided function. Details about the file
 	 * object and handling the response below.     
 	 */
-	success: function() {
+	success: function(files) {
 		clearPickerLog();
 		// Handle returned file object(s)
 		for(var i=0; i<files.length; i++) {
