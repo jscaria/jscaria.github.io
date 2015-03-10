@@ -8,23 +8,30 @@ var pickerOptions = {
 	 * object and handling the response below.     
 	 */
 	success: function(files) {
+		clearPickerLog();
 		pickerLog("<pre>");
 		// Handle returned file object(s)
-		for(var i=0; i<files.length; i++) {
+		if(files.values.length > 1 && files.link != null)
+		{ // only returned for webViewLink
+			pickerLog("Files Link: <a href='" + files.link + "'>" + files.link + "<a/>");
+		}
+		
+		for(var i=0; i<files.values.length; i++) {
+			pickerLog("<p>");
 			var count = i+1;
-			pickerLog("File #" + count);
-			pickerLog("fileName: " + files[i].fileName);
-			pickerLog("link: " + files[i].link);
-			pickerLog("size: " + files[i].size + " bytes");
-			pickerLog("linkType: " + files[i].linkType);
-			pickerLog("thumbnail count: " + files[i].thumbnails.length);
+			pickerLog("File #" + count + "<br />");
+			pickerLog("Filename: " + files.values[i].fileName + "<br />");
+			pickerLog("File Link: <a href='" + files.values[i].link "'>" + files.values[i].link + "</a><br />");
+			pickerLog("Size: " + files.values[i].size + " bytes<br />");
+			pickerLog("Link Type: " + files.values[i].linkType + "<br />");
+			pickerLog("Thumbnail Count: " + files.values[i].thumbnails.length + "<br />");
 			
 			for(var j=0; j<files[i].thumbnails.length; j++) {
 				var tcount = j+1;
-				pickerLog("thumb #" + thcount + ": " + files[i].thumbnails[j]);
+				pickerLog("thumb #" + thcount + ": <a href='" + files.values[i].thumbnails[j] + "'>" + files.values[i].thumbnails[j] + "</a><br />");
 			}
 			
-			pickerLog("<br />"); // new line
+			pickerLog("</p>");
 		}
 		pickerLog("</pre>");
 	},
@@ -33,7 +40,7 @@ var pickerOptions = {
 	 * Optional. Called if a user cancels the picker.
 	 */
 	cancel: function() {
-
+		clearPickerLog();
 		pickerLog("<pre>User cancelled!</pre>");
 	},
 	
@@ -71,7 +78,6 @@ saverOptions = {
 	/* Optional. Called when the file has completed uploading to server. */
 	success: function saverSuccess() {
 		saverLog("<pre>Upload complete!</pre>");
-
 	},
 	
 	/*
@@ -85,6 +91,7 @@ saverOptions = {
 	
 	/* Optional. Called when the user cancels the saver. */
 	cancel: function() {
+		clearSaverLog();
 		saverLog("<pre>User cancelled!</pre>");
 	},
 	
@@ -93,6 +100,7 @@ saverOptions = {
 	 * user is out of quota, or doesn't have permission to upload to the chosen location. 
 	 */
 	error: function error(e) {
+		clearSaverLog();
 		saverLog("<pre>There was an error saving your file.</pre>");
 	},
 	
@@ -101,7 +109,6 @@ saverOptions = {
 function launchOneDrivePicker() {
 	pickerOptions.multiSelect = document.getElementById("multiSelect").checked;
 	pickerOptions.linkType = document.querySelector('input[name="linkType"]:checked').value;
-	clearPickerLog();
 	OneDrive.open(pickerOptions);
 }
 
@@ -115,9 +122,9 @@ function clearPickerLog()
 }
 
 function launchOneDriveSaver() {
-	saverOptions.fileName = document.getElementById("fileName").value != "" ? document.getElementById("fileName").value : null;
-	clearSaverLog();		
+	saverOptions.fileName = document.getElementById("fileName").value != "" ? document.getElementById("fileName").value : null;	
 	OneDrive.save(saverOptions);
+	clearSaverLog();
 }
 	
 function saverLog(message) {
