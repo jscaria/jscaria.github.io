@@ -8,7 +8,7 @@ var pickerOptions = {
 	 * object and handling the response below.     
 	 */
 	success: function(files) {
-		clearPickerLog();
+
 		// Handle returned file object(s)
 		for(var i=0; i<files.length; i++) {
 			var count = i+1;
@@ -23,16 +23,17 @@ var pickerOptions = {
 				pickerLog(files[i].thumbnails[j]);
 			}
 			
-			pickerLog(""); // new line
-		}	
+			pickerLog("<br />"); // new line
+		}
+	
 	},
 	
 	/*
 	 * Optional. Called if a user cancels the picker.
 	 */
 	cancel: function() {
-		clearPickerLog();
-		pickerLog("User cancelled");
+
+		pickerLog("User cancelled!");
 	},
 	
 	/*      
@@ -68,7 +69,8 @@ saverOptions = {
 	
 	/* Optional. Called when the file has completed uploading to server. */
 	success: function saverSuccess() {
-		saverLog("File uploaded!");
+		saverLog("Upload complete!");
+
 	},
 	
 	/*
@@ -82,8 +84,7 @@ saverOptions = {
 	
 	/* Optional. Called when the user cancels the saver. */
 	cancel: function() {
-		clearSaverLog();
-		saverLog("User cancelled");
+		saverLog("User cancelled!");
 	},
 	
 	/*
@@ -91,7 +92,6 @@ saverOptions = {
 	 * user is out of quota, or doesn't have permission to upload to the chosen location. 
 	 */
 	error: function error(e) {
-		clearSaverLog();
 		saverLog("There was an error saving your file.");
 	},
 	
@@ -100,14 +100,14 @@ saverOptions = {
 function launchOneDrivePicker() {
 	pickerOptions.multiSelect = document.getElementById("multiSelect").checked;
 	pickerOptions.linkType = document.querySelector('input[name="linkType"]:checked').value;
+	clearPickerLog();
+	pickerLog("<pre>");	
 	OneDrive.open(pickerOptions);
+	pickerLog("</pre>");	
 }
 
 function pickerLog(message) {
-    var child = document.createElement("p");
-    child.innerText = message;
-    var parent = document.getElementById('pickerConsole') || document.body;
-	parent.appendChild(child);
+    document.getElementById('pickerConsole').innerHTML += message;
 }
 
 function clearPickerLog()
@@ -117,14 +117,15 @@ function clearPickerLog()
 
 function launchOneDriveSaver() {
 	saverOptions.fileName = document.getElementById("fileName").value != "" ? document.getElementById("fileName").value : null;
+	clearSaverLog();	
+	saverLog("<pre>");		
 	OneDrive.save(saverOptions);
+	saverLog("</pre>");		
+	
 }
 	
 function saverLog(message) {
-    var child = document.createElement("p");
-    child.innerText = message;
-    var parent = document.getElementById('saverConsole') || document.body;
-	parent.appendChild(child);
+    document.getElementById('saverConsole').innerHTML += message;
 }
 
 function clearSaverLog()
