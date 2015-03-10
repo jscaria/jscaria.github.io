@@ -27,7 +27,7 @@ var pickerOptions = {
 			
 			for(var j=0; j<files.values[i].thumbnails.length; j++) {
 				var thcount = j+1;
-				pickerLog("thumb #" + thcount + ": <a href='" + files.values[i].thumbnails[j] + "' target='_blank'>" + files.values[i].thumbnails[j] + "</a><br />");
+				pickerLog("Thumbnail #" + thcount + ": <a href='" + files.values[i].thumbnails[j] + "' target='_blank'>" + files.values[i].thumbnails[j] + "</a><br />");
 			}
 			
 			pickerLog("</p>");
