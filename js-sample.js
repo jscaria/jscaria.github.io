@@ -9,11 +9,10 @@ var pickerOptions = {
 	 */
 	success: function(files) {
 		clearPickerLog();
-		pickerLog("<pre>");
 		// Handle returned file object(s)
 		if(files.values.length > 1 && files.link != null)
 		{ // only returned for webViewLink
-			pickerLog("Files Link: <a href='" + files.link + "'>" + files.link + "<a/>");
+			pickerLog("Files Link: <a href='" + files.link + "' target='_blank'>" + files.link + "</a>");
 		}
 		
 		for(var i=0; i<files.values.length; i++) {
@@ -21,19 +20,18 @@ var pickerOptions = {
 			var count = i+1;
 			pickerLog("File #" + count + "<br />");
 			pickerLog("Filename: " + files.values[i].fileName + "<br />");
-			pickerLog("File Link: <a href='" + files.values[i].link + "'>" + files.values[i].link + "</a><br />");
+			pickerLog("File Link: <a href='" + files.values[i].link + "' target='_blank'>" + files.values[i].link + "</a><br />");
 			pickerLog("Size: " + files.values[i].size + " bytes<br />");
 			pickerLog("Link Type: " + files.values[i].linkType + "<br />");
 			pickerLog("Thumbnail Count: " + files.values[i].thumbnails.length + "<br />");
 			
 			for(var j=0; j<files.values[i].thumbnails.length; j++) {
 				var thcount = j+1;
-				pickerLog("thumb #" + thcount + ": <a href='" + files.values[i].thumbnails[j] + "'>" + files.values[i].thumbnails[j] + "</a><br />");
+				pickerLog("thumb #" + thcount + ": <a href='" + files.values[i].thumbnails[j] + "' target='_blank'>" + files.values[i].thumbnails[j] + "</a><br />");
 			}
 			
 			pickerLog("</p>");
 		}
-		pickerLog("</pre>");
 	},
 	
 	/*
@@ -41,7 +39,7 @@ var pickerOptions = {
 	 */
 	cancel: function() {
 		clearPickerLog();
-		pickerLog("<pre>User cancelled!</pre>");
+		pickerLog("User cancelled!<br />");
 	},
 	
 	/*      
@@ -77,7 +75,7 @@ saverOptions = {
 	
 	/* Optional. Called when the file has completed uploading to server. */
 	success: function saverSuccess() {
-		saverLog("<pre>Upload complete!</pre>");
+		saverLog("Upload complete!<br />");
 	},
 	
 	/*
@@ -86,13 +84,13 @@ saverOptions = {
 	 * once with 100.0
 	 */
 	progress: function progress(p) {
-		saverLog("<pre>Uploaded " + p + "%.</pre>")
+		saverLog(Uploaded " + p + "%.<br />")
 	},
 	
 	/* Optional. Called when the user cancels the saver. */
 	cancel: function() {
 		clearSaverLog();
-		saverLog("<pre>User cancelled!</pre>");
+		saverLog("User cancelled!<br />");
 	},
 	
 	/*
@@ -101,7 +99,7 @@ saverOptions = {
 	 */
 	error: function error(e) {
 		clearSaverLog();
-		saverLog("<pre>There was an error saving your file.</pre>");
+		saverLog("There was an error saving your file.<br />");
 	},
 	
 }

@@ -5,7 +5,11 @@ font-family: 'Segoe UI', 'Segoe UI Web Regular', 'Helvetica Neue', 'BBAlpha Sans
 font-size: 12px;
 
 .console {
-	font-color: gray;
+  display: block;
+  font-family: monospace;
+  white-space: pre;
+  margin: 1em 0px;
+
 }
 </style>
 
@@ -63,7 +67,7 @@ font-size: 12px;
         <td>File name:</td>
         <td>
             <input id="fileName" type="textbox" name="fileName" />
-            <label>Default: file name in the URL</label>
+            <label>Default: the file's local name</label>
         </td>
     </tr>
 	
