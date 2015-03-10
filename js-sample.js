@@ -8,7 +8,7 @@ var pickerOptions = {
 	 * object and handling the response below.     
 	 */
 	success: function(files) {
-
+		pickerLog("<pre>");
 		// Handle returned file object(s)
 		for(var i=0; i<files.length; i++) {
 			var count = i+1;
@@ -20,12 +20,13 @@ var pickerOptions = {
 			pickerLog("thumbnail count: " + files[i].thumbnails.length);
 			
 			for(var j=0; j<files[i].thumbnails.length; j++) {
-				pickerLog(files[i].thumbnails[j]);
+				var tcount = j+1;
+				pickerLog("thumb #" + thcount + ": " + files[i].thumbnails[j]);
 			}
 			
 			pickerLog("<br />"); // new line
 		}
-	
+		pickerLog("</pre>");
 	},
 	
 	/*
@@ -33,7 +34,7 @@ var pickerOptions = {
 	 */
 	cancel: function() {
 
-		pickerLog("User cancelled!");
+		pickerLog("<pre>User cancelled!</pre>");
 	},
 	
 	/*      
@@ -69,7 +70,7 @@ saverOptions = {
 	
 	/* Optional. Called when the file has completed uploading to server. */
 	success: function saverSuccess() {
-		saverLog("Upload complete!");
+		saverLog("<pre>Upload complete!</pre>");
 
 	},
 	
@@ -79,12 +80,12 @@ saverOptions = {
 	 * once with 100.0
 	 */
 	progress: function progress(p) {
-		saverLog("Uploaded " + p + "%.")
+		saverLog("<pre>Uploaded " + p + "%.</pre>")
 	},
 	
 	/* Optional. Called when the user cancels the saver. */
 	cancel: function() {
-		saverLog("User cancelled!");
+		saverLog("<pre>User cancelled!</pre>");
 	},
 	
 	/*
@@ -92,7 +93,7 @@ saverOptions = {
 	 * user is out of quota, or doesn't have permission to upload to the chosen location. 
 	 */
 	error: function error(e) {
-		saverLog("There was an error saving your file.");
+		saverLog("<pre>There was an error saving your file.</pre>");
 	},
 	
 }
@@ -101,9 +102,7 @@ function launchOneDrivePicker() {
 	pickerOptions.multiSelect = document.getElementById("multiSelect").checked;
 	pickerOptions.linkType = document.querySelector('input[name="linkType"]:checked').value;
 	clearPickerLog();
-	pickerLog("<pre>");	
 	OneDrive.open(pickerOptions);
-	pickerLog("</pre>");	
 }
 
 function pickerLog(message) {
@@ -117,11 +116,8 @@ function clearPickerLog()
 
 function launchOneDriveSaver() {
 	saverOptions.fileName = document.getElementById("fileName").value != "" ? document.getElementById("fileName").value : null;
-	clearSaverLog();	
-	saverLog("<pre>");		
+	clearSaverLog();		
 	OneDrive.save(saverOptions);
-	saverLog("</pre>");		
-	
 }
 	
 function saverLog(message) {
