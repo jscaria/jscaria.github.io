@@ -84,7 +84,7 @@ saverOptions = {
 	 * once with 100.0
 	 */
 	progress: function progress(p) {
-		saverLog(Uploaded " + p + "%.<br />")
+		saverLog("Uploaded " + p + "%.<br />")
 	},
 	
 	/* Optional. Called when the user cancels the saver. */
