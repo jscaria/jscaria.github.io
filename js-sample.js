@@ -104,22 +104,15 @@ function launchOneDrivePicker() {
 }
 
 function pickerLog(message) {
-    var child = document.createElement("pre");
+    var child = document.createElement("p");
     child.innerText = message;
-                
     var parent = document.getElementById('pickerConsole') || document.body;
 	parent.appendChild(child);
-	parent.appendChild(document.createElement("br"));
 }
 
 function clearPickerLog()
 {
-    var child = document.createElement("pre");
-    child.innerText = "";
-                
-    var parent = document.getElementById('pickerConsole') || document.body;
-	parent.appendChild(child);
-	parent.appendChild(document.createElement("br"));
+    document.getElementById('pickerConsole').innerHTML = "";
 }
 
 function launchOneDriveSaver() {
@@ -128,20 +121,13 @@ function launchOneDriveSaver() {
 }
 	
 function saverLog(message) {
-    var child = document.createElement("pre");
+    var child = document.createElement("p");
     child.innerText = message;
-                
     var parent = document.getElementById('saverConsole') || document.body;
 	parent.appendChild(child);
-	parent.appendChild(document.createElement("br"));
 }
 
 function clearSaverLog()
 {
-    var child = document.createElement("pre");
-    child.innerText = "";
-                
-    var parent = document.getElementById('saverConsole') || document.body;
-	parent.appendChild(child);
-	parent.appendChild(document.createElement("br"));
+    document.getElementById('saverConsole').innerHTML = "";
 }
