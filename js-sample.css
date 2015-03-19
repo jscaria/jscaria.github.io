@@ -1,0 +1,23 @@
+.console {
+  display: block;
+  font-family: monospace;
+  white-space: pre;
+}
+
+.table {
+    display: table;
+    width: 100%;
+    border: 1px solid black;
+}
+
+.row {
+    display: table-row;
+}
+
+.cell {
+    display: table-cell;
+}
+
+.heading {
+    width: 130px;
+}
