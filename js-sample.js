@@ -135,35 +135,38 @@ function clearSaverLog()
 }
 
 window.onLoad = function() {
-	document.getElementById("pickerTable").innerHTML = "    <div class='row'>
-        <span class='cell heading'>Options</span>
-        <span class='cell'>
-        	<input id='multiSelect' type='checkbox' name='multiSelect' />
-        	<label>Enable multiselect</label>
-        </span>
-    </div>
-    <div class='row'>
-        <span class='cell heading'>Link Type</span>
-        <span class='cell'>
-	        <input id='linkType' type='radio' value='webViewLink' name='linkType' checked='checked' />
-	        <label>Web View Link</label>
-	        <input id='linkType' type='radio' value='downloadLink' name='linkType' />
-	        <label>Download link</label>
-        </span>
-    </div>
-    <div class='row'>
-        <span class='cell heading'>Button</span>
-        <span class='cell'>
-		<button onClick='javascript:launchOneDrivePicker();' title='Open from OneDrive' style='direction: ltr; border: 1px solid rgb(9, 74, 178); height: 20px; padding-left: 4px; padding-right: 4px; text-align: center; cursor: pointer; background-color: rgb(9, 74, 178);'>
-			<img src='https://js.live.net/v5.0/images/SkyDrivePicker/SkyDriveIcon_white.png' style='vertical-align: middle; height: 16px;'>
-			<span style='font-family: 'Segoe UI', 'Segoe UI Web Regular', 'Helvetica Neue', 'BBAlpha Sans', 'S60 Sans', Arial, sans-serif; font-size: 12px; font-weight: bold; color: rgb(255, 255, 255); text-align: center; vertical-align: middle; margin-left: 2px; margin-right: 0px;'>Open from OneDrive</span>
-		</button>
-        </span>
-    </div>   
-    <div class='row'>
-        <span class='cell heading' style='vertical-align: top;'>Result</span>
-        <span class='cell'>
-	        <div id='pickerConsole' class='console'>Pick a file to OneDrive to see the return result</div>
-        </span>
-    </div>";
+	var html = "";
+	html += "<div class='row'>";
+        html += "<span class='cell heading'>Options</span>";
+        html += "<span class='cell'>";
+        html += "<input id='multiSelect' type='checkbox' name='multiSelect' />";
+        html += "<label>Enable multiselect</label>";
+        html += "</span>";
+    	html += "</div>";
+    	html += "<div class='row'>";
+        html += "<span class='cell heading'>Link Type</span>";
+        html += "<span class='cell'>";
+	html += "<input id='linkType' type='radio' value='webViewLink' name='linkType' checked='checked' />";
+	html += "<label>Web View Link</label>";
+	html += "<input id='linkType' type='radio' value='downloadLink' name='linkType' />";
+	html += "<label>Download link</label>";
+        html += "</span>";
+    	html += "</div>";
+    	html += "<div class='row'>";
+        html += "<span class='cell heading'>Button</span>";
+        html += "<span class='cell'>";
+	html += "<button onClick='javascript:launchOneDrivePicker();' title='Open from OneDrive' style='direction: ltr; border: 1px solid rgb(9, 74, 178); height: 20px; padding-left: 4px; padding-right: 4px; text-align: center; cursor: pointer; background-color: rgb(9, 74, 178);'>";
+	html += "<img src='https://js.live.net/v5.0/images/SkyDrivePicker/SkyDriveIcon_white.png' style='vertical-align: middle; height: 16px;'>";
+	html += "<span style='font-family: 'Segoe UI', 'Segoe UI Web Regular', 'Helvetica Neue', 'BBAlpha Sans', 'S60 Sans', Arial, sans-serif; font-size: 12px; font-weight: bold; color: rgb(255, 255, 255); text-align: center; vertical-align: middle; margin-left: 2px; margin-right: 0px;'>Open from OneDrive</span>";
+	html += "</button>";
+        html += "</span>";
+    	html += "</div>";
+    	html += "<div class='row'>";
+        html += "<span class='cell heading' style='vertical-align: top;'>Result</span>";
+        html += "<span class='cell'>";
+	html += "<div id='pickerConsole' class='console'>Pick a file to OneDrive to see the return result</div>";
+        html += "</span>";
+    	html += "</div>";
+    	
+    	document.getElementById("pickerTable").innerHTML = html;
 }
