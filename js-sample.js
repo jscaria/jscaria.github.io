@@ -134,7 +134,7 @@ function clearSaverLog()
     document.getElementById('saverConsole').innerHTML = "";
 }
 
-window.onLoad = function() {
+//window.onLoad = function() {
 	var html = "";
 	html += "<div class='row'>";
         html += "<span class='cell heading'>Options</span>";
@@ -169,4 +169,4 @@ window.onLoad = function() {
     	html += "</div>";
     	
     	document.getElementById("pickerTable").innerHTML = html;
-}
+//}
