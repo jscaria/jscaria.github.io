@@ -134,37 +134,77 @@ function clearSaverLog()
     document.getElementById('saverConsole').innerHTML = "";
 }
 
-var html = "";
-html += "<div class='row'>";
-html += "<span class='cell heading'>Options</span>";
-html += "<span class='cell'>";
-html += "<input id='multiSelect' type='checkbox' name='multiSelect' />";
-html += "<label>Enable multiselect</label>";
-html += "</span>";
-html += "</div>";
-html += "<div class='row'>";
-html += "<span class='cell heading'>Link Type</span>";
-html += "<span class='cell'>";
-html += "<input id='linkType' type='radio' value='webViewLink' name='linkType' checked='checked' />";
-html += "<label>Web View Link</label>";
-html += "<input id='linkType' type='radio' value='downloadLink' name='linkType' />";
-html += "<label>Download link</label>";
-html += "</span>";
-html += "</div>";
-html += "<div class='row'>";
-html += "<span class='cell heading'>Button</span>";
-html += "<span class='cell'>";
-html += "<button onClick='javascript:launchOneDrivePicker();' title='Open from OneDrive' style='direction: ltr; border: 1px solid rgb(9, 74, 178); height: 20px; padding-left: 4px; padding-right: 4px; text-align: center; cursor: pointer; background-color: rgb(9, 74, 178);'>";
-html += "<img src='https://js.live.net/v5.0/images/SkyDrivePicker/SkyDriveIcon_white.png' style='vertical-align: middle; height: 16px;'>";
-html += "<span id='button'>Open from OneDrive</span>";
-html += "</button>";
-html += "</span>";
-html += "</div>";
-html += "<div class='row'>";
-html += "<span class='cell heading' style='vertical-align: top;'>Result</span>";
-html += "<span class='cell'>";
-html += "<div id='pickerConsole' class='console'>Pick a file to OneDrive to see the return result</div>";
-html += "</span>";
-html += "</div>";
+var pickerHtml = "";
+pickerHtml += "<div class='row'>";
+pickerHtml += "<span class='cell heading'>Options</span>";
+pickerHtml += "<span class='cell'>";
+pickerHtml += "<input id='multiSelect' type='checkbox' name='multiSelect' />";
+pickerHtml += "<label>Enable multiselect</label>";
+pickerHtml += "</span>";
+pickerHtml += "</div>";
+pickerHtml += "<div class='row'>";
+pickerHtml += "<span class='cell heading'>Link Type</span>";
+pickerHtml += "<span class='cell'>";
+pickerHtml += "<input id='linkType' type='radio' value='webViewLink' name='linkType' checked='checked' />";
+pickerHtml += "<label>Web View Link</label>";
+pickerHtml += "<input id='linkType' type='radio' value='downloadLink' name='linkType' />";
+pickerHtml += "<label>Download link</label>";
+pickerHtml += "</span>";
+pickerHtml += "</div>";
+pickerHtml += "<div class='row'>";
+pickerHtml += "<span class='cell heading'>Button</span>";
+pickerHtml += "<span class='cell'>";
+pickerHtml += "<button onClick='javascript:launchOneDrivePicker();' title='Open from OneDrive' style='direction: ltr; border: 1px solid rgb(9, 74, 178); height: 20px; padding-left: 4px; padding-right: 4px; text-align: center; cursor: pointer; background-color: rgb(9, 74, 178);'>";
+pickerHtml += "<img src='https://js.live.net/v5.0/images/SkyDrivePicker/SkyDriveIcon_white.png' style='vertical-align: middle; height: 16px;'>";
+pickerHtml += "<span id='button'>Open from OneDrive</span>";
+pickerHtml += "</button>";
+pickerHtml += "</span>";
+pickerHtml += "</div>";
+pickerHtml += "<div class='row'>";
+pickerHtml += "<span class='cell heading' style='vertical-align: top;'>Result</span>";
+pickerHtml += "<span class='cell'>";
+pickerHtml += "<div id='pickerConsole' class='console'>Pick a file to OneDrive to see the return result</div>";
+pickerHtml += "</span>";
+pickerHtml += "</div>";
 
-document.getElementById("pickerTable").innerHTML = html;
+document.getElementById("pickerTable").innerHTML = pickerHtml;
+
+
+var saverHtml = "";
+
+
+saverHtml += "<div class='row'>";
+saverHtml += "<span class='cell heading'>File</span>";
+saverHtml += "<span class='cell'>";
+saverHtml += "<input id='inputFile' name='file' type='file' />";
+saverHtml += "</span>";
+saverHtml += "</div>";
+
+saverHtml += "<div class='row'>";
+saverHtml += "<span class='cell heading'>File name</span>";
+saverHtml += "<span class='cell'>";
+saverHtml += "<input id='fileName' type='textbox' name='fileName' />";
+saverHtml += "<label>Default: the file's local name</label>";
+saverHtml += "</span>";
+saverHtml += "</div>";
+
+saverHtml += "<div class='row'>";
+saverHtml += "<span class='cell heading'>Button</span>";
+saverHtml += "<span class='cell'>";
+saverHtml += "<button onClick='javascript:launchOneDriveSaver();' title='Save to OneDrive' style='direction: ltr; border: 1px solid rgb(9, 74, 178); height: 20px; padding-left: 4px; padding-right: 4px; text-align: center; cursor: pointer; background-color: rgb(9, 74, 178);'>";
+saverHtml += "<img src='https://js.live.net/v5.0/images/SkyDrivePicker/SkyDriveIcon_white.png' style='vertical-align: middle; height: 16px;'>";
+saverHtml += "<span id='button'>Save to OneDrive</span>";
+saverHtml += "</button>";
+saverHtml += "</span>";
+saverHtml += "</div>";
+
+saverHtml += "<div class='row'>";
+saverHtml += "<span class='cell heading' style='vertical-align: top;'>Result</span>";
+saverHtml += "<span class='cell'>";
+saverHtml += "<div id='saverConsole' class='console'>Save a file to OneDrive to see the return result</div>";
+saverHtml += "</span>";
+saverHtml += "</div>";
+
+
+document.getElementById("saverTable").innerHTML = saverHtml;
+
