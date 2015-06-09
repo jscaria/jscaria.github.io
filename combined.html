@@ -121,7 +121,7 @@
 			pickerOptions.linkType = document.querySelector('input[name="linkType"]:checked').value;
 			OneDrive.open(pickerOptions);
 			
-			var odbLinkType = pickerOptions.linkType == "webViewLink" ? "sharing" /* or real */ : "download";
+			var odbLinkType = pickerOptions.linkType == "webViewLink" ? "real" /* or "sharing" */ : "download";
 			OneDrivePro.Open({
 				LinkType: odbLinkType,
 				MultiSelect: pickerOptions.multiSelect,
