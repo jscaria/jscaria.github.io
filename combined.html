@@ -120,6 +120,13 @@
 			pickerOptions.multiSelect = document.getElementById("multiSelect").checked;
 			pickerOptions.linkType = document.querySelector('input[name="linkType"]:checked').value;
 			OneDrive.open(pickerOptions);
+			
+			var odbLinkType = pickerOptions.linkType == "webViewLink" ? "sharing" /* or real */ : "download";
+			OneDrivePro.Open({
+				LinkType: odbLinkType,
+				MultiSelect: pickerOptions.multiSelect,
+				FolderSelect: false
+			}, pickerOptions.success, pickerOptions.cancel);
 		}
 		
 		function launchOneDriveSaver() {
