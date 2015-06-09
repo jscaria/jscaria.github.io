@@ -110,10 +110,13 @@
 			 * Optional. Called when an error occured on our server. Also called if the
 			 * user is out of quota, or doesn't have permission to upload to the chosen location. 
 			 */
-			error: error
+			error: error,
+			
+			driveType: "Both"
 		}
 
 		function launchOneDrivePicker() {
+			pickerOptions.driveType = document.getElementById('input[name=driveType']:checked").value
 			pickerOptions.multiSelect = document.getElementById("multiSelect").checked;
 			pickerOptions.linkType = document.querySelector('input[name="linkType"]:checked').value
 			OneDrive.open(pickerOptions);
