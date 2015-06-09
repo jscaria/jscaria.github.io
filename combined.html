@@ -139,7 +139,15 @@
 	
 	<table>
 	    <tr>
-	        <td>Options</td>
+	        <td>Drive Type</td>
+	        <td>
+	            <input id="driveType" type="radio" value="ODB" name="linkType"  />
+	            <label>OneDrive for Business</label>
+	            <input id="driveType" type="radio" value="ODC" name="linkType" />
+	            <label>OneDrive - consumer</label>
+	            <input id="driveType" type="radio" value="Both" name="linkType" checked="checked" />
+	            <label>Both</label>	            
+	        </td>	        
 	        <td>
 	                <input id="multiSelect" type="checkbox" name="multiSelect" />
 	                <label>Enable multiselect</label>
