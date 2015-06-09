@@ -119,14 +119,22 @@
 			pickerOptions.driveType = document.querySelector('input[name="driveType"]:checked').value;
 			pickerOptions.multiSelect = document.getElementById("multiSelect").checked;
 			pickerOptions.linkType = document.querySelector('input[name="linkType"]:checked').value;
-			OneDrive.open(pickerOptions);
 			
-			var odbLinkType = pickerOptions.linkType == "webViewLink" ? "real" /* or "sharing" */ : "download";
-			OneDrivePro.Open({
-				LinkType: odbLinkType,
-				MultiSelect: pickerOptions.multiSelect,
-				FolderSelect: false
-			}, pickerOptions.success, pickerOptions.cancel);
+			if(pickerOptions.driveType == "ODC")
+			{
+				OneDrive.open(pickerOptions);
+			}else{
+				var odbLinkType = pickerOptions.linkType == "webViewLink" ? "real" /* or "sharing" */ : "download";
+				if(pickerOptions.driveType == "ODB")
+				{
+					OneDrivePro.Open({
+						LinkType: odbLinkType,
+						MultiSelect: pickerOptions.multiSelect,
+						FolderSelect: false
+					}, pickerOptions.success, pickerOptions.cancel);
+				}else{
+					// Build UI for disambiguation.
+				}
 		}
 		
 		function launchOneDriveSaver() {
