@@ -116,7 +116,7 @@
 		}
 
 		function launchOneDrivePicker() {
-			pickerOptions.driveType = document.getElementById('input[name=driveType']:checked").value
+			pickerOptions.driveType = document.getElementById('input[name="driveType"]:checked').value
 			pickerOptions.multiSelect = document.getElementById("multiSelect").checked;
 			pickerOptions.linkType = document.querySelector('input[name="linkType"]:checked').value
 			OneDrive.open(pickerOptions);
