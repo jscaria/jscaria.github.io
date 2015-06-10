@@ -127,13 +127,21 @@
 				var odbLinkType = pickerOptions.linkType == "webViewLink" ? "real" /* or "sharing" */ : "download";
 				if(pickerOptions.driveType == "ODB")
 				{
+					// If the odbLinkType == "sharing", does the tenant support it?
+					// If not, change the linkType to "real"
 					OneDrivePro.Open({
 						LinkType: odbLinkType,
 						MultiSelect: pickerOptions.multiSelect,
 						FolderSelect: false
 					}, pickerOptions.success, pickerOptions.cancel);
 				}else{
-					// Build UI for disambiguation.
+					// Display form asking for email address
+    					var popup = window.open("", "OneDrive", "width=525,height=525");
+    					popup.document.createElement("label")
+    					var input = popup.document.createElement("input");
+       					var button = popup.document.createElement("button");
+
+        				popup.focus();
 				}
 		}
 		
